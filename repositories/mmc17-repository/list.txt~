@@ -1,0 +1,43 @@
+|||Mobile Audio - AMR-NB Audio (.amr)||AMR Narrowband audio. Used in mobile phones.||MMC team||1||amr.txt|||
+|||MP3 Audio (.mp3)||The commonly used MP3 (MPEG 1 Audio, Layer 3).||MMC team||1||mp3.txt|||
+|||Ogg Vorbis Audio (.ogg)||The popular open-source audio codec Vorbis.||MMC team||1||ogg.txt|||
+|||Wave Audio (.wav)||Uncompressed Wave audio (WAV).||MMC team||1||wav.txt|||
+|||Windows Media Audio (.wma)||Windows Media Audio (WMA) version 8.||MMC team||1||wma.txt|||
+|||iPhone Ringtone (.m4r)||Create iPhone compatible ringtones. Maximum duration of a ringtone is 40 seconds.||MMC team||1||iphone-ringtone.txt|||
+
+
+|||Mobile Video - 3GP Video (.3gp)||3GP Video. Used in mobile phones. This profile does not support subtitles.||MMC team||1||f-3gp.txt|||
+|||AVI Video (.avi)||AVI Video. Playable on Windows PCs without any extra codec installation. This profile does not support subtitles.||MMC team||1||f-avi.txt|||
+|||MPEG 1/2 Video (.mpg)||MPEG-1 and MPEG-2 video. This profile does not supports subtitles.||MMC team||1||f-mpeg.txt|||
+|||Windows Media Video (.wmv)||Windows Media Video (WMV) version 8. This profile does not supports subtitles.||MMC team||1||f-wmv.txt|||
+|||Quicktime Video (.mov)||Apple QuickTime compatible video. This profile does not supports subtitles.||MMC team||1||f-mov.txt|||
+|||Flash Video (.flv)||Flash Video is used for video over the Internet. This profile does not supports subtitles.||MMC team||1||f-flv.txt|||
+|||PSP Video (.mp4)||Video for your Sony PSP device. This profile does not support subtitles.||MMC team||1||f-psp.txt|||
+|||Android Video (.mp4)||Video for your mobile Android device. This profile does not support subtitles.||MMC team||1||f-android.txt|||
+|||WebM Video (.webm)||Open video format for the web that is freely available to everyone by Google. This profile does not support subtitles.||MMC team||1||f-webm.txt|||
+|||Samsung Restore Video (.3g2)||3GP Video with .3g2 extention for your Samsung Restore cell phone. This profile does not support subtitles.||BostonPeng||1||f-restore.txt|||
+|||Samsung Genoa Video (.3gp)||Video for your Samsung Genoa GT-C3510 which allows full screen playback. This profile does not support subtitles.||pelucas95||1||f-genoa.txt|||
+|||Nokia 5800 XpressMusic Video (.mp4)||High-quality video for your Nokia 5800 XpressMusic. This profile does not support subtitles.||Extero||1||f-nokia5800.txt|||
+
+
+
+|||MP4 video with subs (.mp4)||MP4 video that supports subtitles  embending.||MMC team||1||m-mp4.txt|||
+|||XviD Video with subs (.avi)||XviD in AVI container. The popular free MPEG-4 codec. This profile supports subtitles but no AMR decoding.||MMC team||1||m-xvid.txt|||
+|||Apple iPad video with subs (.mp4)||Video compatible with the larger screen of the Apple iPad. This profile supports subtitles but no AMR decoding.||MMC team||1||m-ipad.txt|||
+|||iPhone/iPod Video with subs (.mp4)||iPhone and iPod compatible video. This profile supports subtitles but no AMR decoding.||MMC team||1||m-iphone.txt|||
+|||PSP Video with subs (.mp4)||Video for your Sony PSP device. This profile supports subtitles but no AMR decoding.||MMC team||1||m-psp.txt|||
+|||Android Video with subs (.mp4)||Video for your mobile Android device. This profile supports subtitles but no AMR decoding.||MMC team||1||m-android.txt|||
+|||BlackBerry Torch 9800 video with subs (.mp4)||Video for your RIM BlackBerry Torch 9800 device.||MMC team||1||m-blackberryTorch9800.txt|||
+|||BlackBerry Storm 9530 video with subs (.mp4)||Video for your RIM BlackBerry Storm 9530 device.||MMC team||1||m-blackberryStorm9530.txt|||
+|||BlackBerry Bold 9700 video with subs (.avi)||Video for your RIM BlackBerry Bold 9700 device.||MMC team||1||m-blackberryBold9700.txt|||
+|||BlackBerry Bold 9900 video with subs (.mp4)||Video for your RIM BlackBerry Bold 9900 device.||Edward Ho||1||m-blackberryBold9900.txt|||
+|||Nokia N900 video with subs (.mp4)||Video for your Nokia N900 device.||MMC team||1||m-nokiaN900.txt|||
+|||Nokia X6 video with subs (.mp4)||Video for your Nokia X6 device.||MMC team||1||m-nokiaX6.txt|||
+|||Nokia C7 video with subs (.mp4)||Video for your Nokia C7 device.||MMC team||1||m-nokiaC7.txt|||
+|||Palm Pre video with subs (.mp4)||Video for your Palm Pre / Pre Plus / Pre2 device.||MMC team||2||m-pre.txt|||
+|||Sony Ericsson Xperia X10 video with subs (.mp4)||Video for your Sony Ericsson Xperia X10 smartphone.||MMC team||1||m-xperia.txt|||
+|||Sony Ericsson Vivaz video with subs (.mp4)||Video for your Sony Ericsson Vivaz smartphone.||MMC team||1||m-vivaz.txt|||
+|||HTC Desire video with subs (.mp4)||Video for your HTC Desire smartphone.||MMC team||1||m-desire.txt|||
+
+
+

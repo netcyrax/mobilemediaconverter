@@ -1,0 +1,16 @@
+AVI Video
+cmd==$FFMPEG -y -i $INPUT -f avi -vcodec $VCODEC -r $VFPS -b $VB -acodec $ACODEC -ac $AC -ar $AF -ab $AB -map_meta_data $OUTPUT:$INPUT $OUTPUT
+AB==128k||256k||196k||96k||64k
+AF==44100||8000||16000||22050||32000
+AC==2||1
+Acodec==libmp3lame||mp2
+VB==200k||320k||500k||700k||1100k||1500K
+VFPS==25||30
+VS==
+VCodec==msmpeg4v2||msmpeg4v1||msmpeg4||wmv2||wmv1||mpeg4
+ext==avi
+defAB==-1
+defVB==3
+icon==avi 1.png
+version==1
+itunes==no

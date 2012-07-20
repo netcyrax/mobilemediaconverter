@@ -1,0 +1,1 @@
+mencoder -ovc x264 -x264encopts bitrate=300:threads=auto:subq=6:partitions=all:8x8dct:me=umh:frameref=5:bframes=3:b_pyramid:weight_b -vf harddup -oac faac -faacopts br=56:mpeg=4:object=2 -srate 44100 -ofps 24000/1001 -o 

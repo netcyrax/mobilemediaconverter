@@ -1,0 +1,15 @@
+Mobile Audio - AMR-NB Audio
+cmd==$FFMPEG -y -vn -i $INPUT -acodec $ACODEC -ac $AC -ar $AF -ab $AB -f amr -map_meta_data $OUTPUT:$INPUT $OUTPUT
+AB==4.75k||5.15k||5.9k||6.7k||7.4k||7.95k||10.2k||12.2k
+AF==8000
+AC==1
+Acodec==libopencore_amrnb
+VB==
+VFPS==
+VS==
+VCodec==
+ext==amr
+defAB==6
+defVB==-1
+icon==amr.png
+version==1

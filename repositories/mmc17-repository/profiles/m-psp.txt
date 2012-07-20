@@ -1,0 +1,16 @@
+PSP Video with subs
+cmd==$MENCODER -oac $ACODEC -faacopts br=$AB:mpeg=4:object=2:raw -ovc lavc -of lavf -lavcopts aglobal=1:vglobal=1:vcodec=$VCODEC:vbitrate=$VB -af lavcresample=$AF -vf scale=$VS,harddup -lavfopts format=psp -o $OUTPUT $INPUT
+AB==128||256||196||96||64
+AF==24000||8000||16000||32000||44100
+AC==
+Acodec==faac
+VB==200||320||500||700||1100||1500
+VFPS==
+VS==320:240
+VCodec==mpeg4
+ext==mp4
+defAB==-1
+defVB==3
+icon==mp4.png
+version==1
+itunes==no

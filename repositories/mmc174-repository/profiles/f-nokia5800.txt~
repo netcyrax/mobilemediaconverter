@@ -1,0 +1,17 @@
+Nokia 5800 Video
+cmd==$FFMPEG -y -i $INPUT -vf scale=$VS -f psp -vcodec $VCODEC -r $VFPS -b $VB -acodec $ACODEC -ac $AC -threads 8 -ar $AF -ab $AB $OUTPUT
+AB==128k||196k||96k||64k
+AF==32000
+AC==2||1
+Acodec==libfaac
+VB==900k||1200k||2200k||3000k
+VFPS==30
+VS==640:360
+VCodec==mpeg4
+ext==mp4
+defAB==-1
+defVB==2
+icon==nokia.png
+version==1
+itunes==no
+

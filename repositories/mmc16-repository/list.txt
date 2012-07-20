@@ -1,0 +1,24 @@
+|||Mobile Audio - AMR-NB Audio (.amr)||AMR Narrowband audio. Used in mobile phones.||MMC team||1||amr.txt|||
+|||MP3 Audio (.mp3)||The commonly used MP3 (MPEG 1 Audio, Layer 3).||MMC team||1||mp3.txt|||
+|||Ogg Vorbis Audio (.ogg)||The popular open-source audio codec Vorbis.||MMC team||1||ogg.txt|||
+|||Wave Audio (.wav)||Uncompressed Wave audio (WAV).||MMC team||1||wav.txt|||
+|||Windows Media Audio (.wma)||Windows Media Audio (WMA) version 8.||MMC team||1||wma.txt|||
+|||iPhone Ringtone (.m4r)||Create iPhone compatible ringtones. Maximum duration of a ringtone is 40 seconds.||MMC team||1||iphone-ringtone.txt|||
+
+
+|||Mobile Video - 3GP Video (.3gp)||3GP Video. Used in mobile phones. This profile does not support subtitles.||MMC team||1||f-3gp.txt|||
+|||AVI Video (.avi)||AVI Video. Playable on Windows PCs without any extra codec installation. This profile does not support subtitles.||MMC team||1||f-avi.txt|||
+|||MPEG 1/2 Video (.mpg)||MPEG-1 and MPEG-2 video. This profile does not supports subtitles.||MMC team||1||f-mpeg.txt|||
+|||Windows Media Video (.wmv)||Windows Media Video (WMV) version 8. This profile does not supports subtitles.||MMC team||1||f-wmv.txt|||
+|||Quicktime Video (.mov)||Apple QuickTime compatible video. This profile does not supports subtitles.||MMC team||1||f-mov.txt|||
+|||Flash Video (.flv)||Flash Video is used for video over the Internet. This profile does not supports subtitles.||MMC team||1||f-flv.txt|||
+|||PSP Video (.mp4)||Video for your Sony PSP device. This profile does not support subtitles.||MMC team||1||f-psp.txt|||
+|||Android Video (.mp4)||Video for your mobile Android device. This profile does not support subtitles.||MMC team||1||f-android.txt|||
+
+|||MPEG 1/2 Video with subs (.mpg)||MPEG-1 and MPEG-2 video. This profile supports subtitles but no AMR decoding.||MMC team||1||m-mpeg.txt|||
+|||Windows Media Video with subs (.wmv)||Windows Media Video (WMV) version 8. This profile supports subtitles but no AMR decoding.||MMC team||1||m-wmv.txt|||
+|||XviD Video with subs (.avi)||XviD in AVI container. The popular free MPEG-4 codec. This profile supports subtitles but no AMR decoding.||MMC team||1||m-xvid.txt|||
+|||iPhone/iPod Video with subs (.mp4)||iPhone and iPod compatible video. This profile supports subtitles but no AMR decoding.||MMC team||1||m-iphone.txt|||
+|||PSP Video with subs (.mp4)||Video for your Sony PSP device. This profile supports subtitles but no AMR decoding.||MMC team||1||m-psp.txt|||
+|||Android Video with subs (.mp4)||Video for your mobile Android device. This profile supports subtitles but no AMR decoding.||MMC team||1||m-android.txt|||
+

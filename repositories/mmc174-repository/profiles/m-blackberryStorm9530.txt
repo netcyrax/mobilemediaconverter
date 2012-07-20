@@ -1,0 +1,17 @@
+BlackBerry Storm 9530 video with subs
+cmd==$MENCODER -noskip -mc 0 -vfm ffmpeg -vf scale=$VS,harddup -oac $ACODEC -lameopts cbr:br=$AB -ovc lavc -lavcopts vglobal=1:vcodec=$VCODEC:vbitrate=$VB:autoaspect:aglobal=1 -of lavf -lavfopts format=mp4 -o $OUTPUT $INPUT
+AB==128||256||192||96||64
+AF==
+AC==
+Acodec==mp3lame
+VB==500||800||1100||1600||2500
+VFPS==
+VS==480:360
+VCodec==mpeg4
+ext==mp4
+defAB==-1
+defVB==3
+icon==blackberry.png
+itunes==no
+version==1
+

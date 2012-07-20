@@ -1,0 +1,16 @@
+Wave Audio
+cmd==$FFMPEG -y -vn -i $INPUT -acodec $ACODEC -ac $AC -ar $AF -ab $AB -f wav -map_meta_data $OUTPUT:$INPUT $OUTPUT
+AB==1000k||1200k||1411k||1500k||1600k
+AF==44100||8000||16000||22050||32000
+AC==2||1
+Acodec==pcm_s16le
+VB==
+VFPS==
+VS==
+VCodec==
+ext==wav
+defAB==2
+defVB==-1
+icon==wav.png
+version==1
+itunes==no

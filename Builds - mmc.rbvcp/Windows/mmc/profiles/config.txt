@@ -1,0 +1,14 @@
+subpos==95
+subsize==4
+subenc==ISO-8859-7
+upvisible==yes
+downvisible==yes
+itunes=false
+lastProfile==0
+repository==http://www.miksoft.net/mmc174/
+autoDetectSubs==True
+
+openFolder==False
+youtubeOutput==Desktop
+youtubeQuality==0
+lastOutputFolder==H:\Torrents\

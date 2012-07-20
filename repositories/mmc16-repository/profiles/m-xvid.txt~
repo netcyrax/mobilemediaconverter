@@ -1,0 +1,16 @@
+XviD Video
+cmd==$MENCODER -v -noskip -vfm ffmpeg -vf harddup -ovc $VCODEC -oac $ACODEC -lameopts cbr:br=$AB -xvidencopts bitrate=$VB -of lavf -fourcc XVID -lavfopts format=avi -o $OUTPUT $INPUT
+AB==128||256||196||96||64
+AF==
+AC==
+Acodec==mp3lame
+VB==200||320||500||700||1100||1500
+VFPS==
+VS==
+VCodec==xvid
+ext==avi
+defAB==-1
+defVB==4
+icon==avi 1.png
+version==1
+itunes==no

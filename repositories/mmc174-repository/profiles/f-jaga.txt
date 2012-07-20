@@ -1,0 +1,17 @@
+Jaga Video
+cmd==$FFMPEG -y -i $INPUT -vf scale=$VS -f 3gp -vcodec $VCODEC -r $VFPS -b $VB -acodec $ACODEC -ac $AC -ar $AF -ab $AB $OUTPUT
+AB==16k
+AF==32000
+AC==2
+Acodec==libvo_aacenc
+VB==200k
+VFPS==15
+VS==176:144
+VCodec==h263
+ext==3gp
+defAB==-1
+defVB==4
+icon==3gp 1.png
+version==1
+itunes==no
+

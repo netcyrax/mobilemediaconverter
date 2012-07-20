@@ -1,0 +1,16 @@
+Samsung Genoa Video
+cmd==$FFMPEG -y -i $INPUT -f 3gp -vcodec $VCODEC -s $VS -r $VFPS -b $VB -acodec $ACODEC -ac $AC -ar $AF -ab $AB -map_meta_data $OUTPUT:$INPUT $OUTPUT
+AB==80k
+AF==44100
+AC==2||1
+Acodec==libfaac
+VB==200k||320k||482k||700k
+VFPS==12
+VS==320x240
+VCodec==mpeg4
+ext==3gp
+defAB==-1
+defVB==2
+icon==3gp 1.png
+version==1
+itunes==no

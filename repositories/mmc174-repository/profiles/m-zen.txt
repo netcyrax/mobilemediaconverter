@@ -1,0 +1,17 @@
+Creative Zen video with subs
+cmd==$MENCODER -v -noskip -vfm ffmpeg -vf harddup -ovc $VCODEC -oac $ACODEC -lameopts cbr:br=$AB -xvidencopts bitrate=$VB -of lavf -ffourcc XVID -lavfopts format=avi -o $OUTPUT $INPUT
+AB==128||256||196||96||64
+AF==
+AC==
+Acodec==mp3lame
+VB==200||320||500||700||1000
+VFPS==25||28||30
+VS==320:240
+VCodec==xvid
+ext==avi
+defAB==-1
+defVB==4
+icon==avi 1.png
+version==1
+itunes==no
+

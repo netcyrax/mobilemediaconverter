@@ -1,0 +1,16 @@
+Android Video
+cmd==$FFMPEG -y -i $INPUT -vf scale=$VS -f mp4 -vcodec $VCODEC -r $VFPS -b $VB -acodec $ACODEC -ac $AC -ar $AF -ab $AB $OUTPUT
+AB==128k||256k||196k||96k||64k
+AF==24000||8000||16000||32000||44100
+AC==2||1
+Acodec==libvo_aacenc
+VB==200k||320k||500k||700k||1100k||1500K||2000K||25000k
+VFPS==25
+VS==480x320
+VCodec==mpeg4
+ext==mp4
+defAB==-1
+defVB==5
+icon==android.png
+version==1
+version==1

@@ -1,0 +1,16 @@
+WebM Video
+cmd==$FFMPEG -y -i $INPUT -acodec $ACODEC -ac $AC -ab $AB -ar $AF -vcodec $VCODEC -b $VB $OUTPUT
+AB==128k||256k||196k||96k||64k
+AF==44100||8000||16000||22050||32000
+AC==2||1
+Acodec==libvorbis
+VB==200k||320k||500k||700k||1100k||1500K
+VFPS==
+VS==
+VCodec==libvpx
+ext==webm
+defAB==-1
+defVB==3
+icon==webm.png
+version==1
+itunes==no

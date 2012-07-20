@@ -1,0 +1,16 @@
+MPEG 1/2 Video with subs
+cmd==$MENCODER -v -noskip -vfm ffmpeg -vf harddup -ovc lavc -oac $ACODEC -lameopts cbr:br=$AB -lavcopts vglobal=0:aglobal=0:vcodec=$VCODEC:vbitrate=$VB:autoaspect -of lavf -lavfopts format=mpg -o $OUTPUT $INPUT
+AB==128||256||196||96||64
+AF==
+AC==
+Acodec==mp3lame
+VB==200||320||500||700||1100||1500
+VFPS==
+VS==
+VCodec==mpeg1video||mpeg2video
+ext==mpg
+defAB==-1
+defVB==4
+icon==mpeg 1.png
+version==1
+itunes==no

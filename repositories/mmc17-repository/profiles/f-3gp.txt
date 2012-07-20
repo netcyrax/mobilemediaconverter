@@ -1,0 +1,15 @@
+Mobile Video - 3GP Video
+cmd==$FFMPEG -y -i $INPUT -f 3gp -vcodec $VCODEC -s $VS -r $VFPS -b $VB -acodec $ACODEC -ac $AC -ar $AF -ab $AB -map_meta_data $OUTPUT:$INPUT $OUTPUT
+AB==64k||16k||32k||96k||128k||192k||256k
+AF==32000||8000||16000||22050||41000
+AC==2||1
+Acodec==libfaac||libopencore_amrnb
+VB==40k||80k||100k||160k||200k||320k||500k||700k
+VFPS==15||25||30
+VS==qcif||cif
+VCodec==h263||mpeg4
+ext==3gp
+defAB==-1
+defVB==2
+icon==3gp 1.png
+version==1

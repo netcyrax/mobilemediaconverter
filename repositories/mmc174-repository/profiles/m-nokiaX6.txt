@@ -1,0 +1,17 @@
+Nokia X6 video with subs
+cmd==$MENCODER -noskip -mc 0 -vfm ffmpeg -vf scale=$VS,harddup -oac $ACODEC -faacopts br=$AB:mpeg=4:object=2:raw -ovc $VCODEC -x264encopts bitrate=$VB:nocabac:direct_pred=auto:me=umh:frameref=2:level_idc=21:partitions=all:threads=auto:bframes=0 -lavfopts format=mp4 -o $OUTPUT $INPUT
+AB==128||256||192||96||64
+AF==
+AC==
+Acodec==faac
+VB==500||800||1100||1600||2500
+VFPS==
+VS==320:180||640:360
+VCodec==x264
+ext==mp4
+defAB==-1
+defVB==3
+icon==nokia.png
+itunes==no
+version==1
+

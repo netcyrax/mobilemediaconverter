@@ -1,0 +1,16 @@
+PSP Video
+cmd==$FFMPEG -y -i $INPUT -f psp -vcodec $VCODEC -s $VS -r $VFPS -b $VB -acodec $ACODEC -ac $AC -ar $AF -ab $AB -map_meta_data $OUTPUT:$INPUT $OUTPUT
+AB==128k||256k||196k||96k||64k
+AF==24000||8000||16000||32000||44100
+AC==2||1
+Acodec==libfaac
+VB==200k||320k||500k||700k||1100k||1500K
+VFPS==29.97
+VS==320x240
+VCodec==mpeg4
+ext==mp4
+defAB==-1
+defVB==3
+icon==mp4.png
+version==1
+version==1

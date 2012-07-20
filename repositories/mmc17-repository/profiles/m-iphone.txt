@@ -1,0 +1,18 @@
+iPhone/iPod Video with subs
+
+cmd==$MENCODER -v -noskip -mc 0 -vfm ffmpeg -vf scale=$VS,harddup -oac $ACODEC -faacopts br=$AB:mpeg=4:object=2:raw -ovc lavc -lavcopts vglobal=1:vcodec=$VCODEC:vbitrate=$VB:autoaspect:aglobal=1 -of lavf -lavfopts format=ipod -o $OUTPUT $INPUT
+AB==128||256||192||96||64
+AF==
+AC==
+Acodec==faac
+VB==200||320||500||700||1100||1500
+VFPS==
+VS==480:320
+VCodec==mpeg4
+ext==mp4
+defAB==-1
+defVB==3
+icon==mp4.png
+itunes==yes
+version==1
+

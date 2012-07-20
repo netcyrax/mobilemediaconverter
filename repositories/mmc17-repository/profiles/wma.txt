@@ -1,0 +1,15 @@
+Windows Media Audio
+cmd==$FFMPEG -y -vn -i $INPUT -acodec $ACODEC -ac $AC -ar $AF -ab $AB -f asf -map_meta_data $OUTPUT:$INPUT $OUTPUT
+AB==16k||32k||64k||128k||192k||256k
+AF==44100||8000||16000||22050||32000
+AC==2||1
+Acodec==wmav2||wmav1
+VB==
+VFPS==
+VS==
+VCodec==
+ext==wma
+defAB==4
+defVB==-1
+icon==wma.png
+version==1

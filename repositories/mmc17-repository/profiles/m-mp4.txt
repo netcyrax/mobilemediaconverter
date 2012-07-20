@@ -1,0 +1,17 @@
+MP4 video with subs
+cmd==$MENCODER -noskip -vfm ffmpeg -vf harddup -oac $ACODEC -lameopts cbr:br=$AB -ovc lavc -lavcopts vglobal=1:vcodec=$VCODEC:vbitrate=$VB:autoaspect:aglobal=1 -of lavf -lavfopts format=mp4 -o $OUTPUT $INPUT
+AB==128||256||192||96||64
+AF==
+AC==
+Acodec==mp3lame
+VB==200||320||500||700||900||1100||1500
+VFPS==
+VS==
+VCodec==mpeg4
+ext==mp4
+defAB==-1
+defVB==4
+icon==mp4.png
+itunes==no
+version==1
+
