@@ -591,6 +591,15 @@ End
 	#tag EndEvent
 
 
+	#tag MenuHandler
+		Function Untitled() As Boolean Handles Untitled.Action
+			
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+
 	#tag Method, Flags = &h0
 		Sub addPlaylistToQ()
 		  
@@ -952,6 +961,13 @@ End
 		      urlToDownload = urlList(0)
 		    end if
 		    
+		    // Replace the "sig" tag with "signature" (change 29/9/2012)
+		    urlToDownload = Replace(urlToDownload, "sig=", "signature=")
+		    
+		    // Replace blank and quote characters (change 29/9/2012)
+		    urlToDownload = ReplaceAll(urlToDownload,quote.Text,"%22")
+		    urlToDownload = ReplaceAll(urlToDownload," ","%20")
+		    
 		    dim fOut as FolderItem
 		    fOut = new FolderItem(txtout.Text)
 		    
@@ -1282,7 +1298,7 @@ End
 		        Window1.lstIn.AddRow ("Download  " + q + sUrl + q)
 		        
 		        // set output dir
-		        if (Window1.txtOut.Text = "") then Window1.txtOut.Text = Window1.lastOutputFolder 
+		        if (Window1.txtOut.Text = "") then Window1.txtOut.Text = Window1.lastOutputFolder
 		        
 		        // display the drop box
 		        Window1.dropBox()

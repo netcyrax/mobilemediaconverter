@@ -1829,8 +1829,7 @@ End
 		        myMatch=rg.search(sh.Result)
 		        if myMatch <> Nil then
 		          if (myMatch.SubExpressionString(1) <> "Medibuntu") then
-		            k = MsgBox ("The Mencoder installed is not from the Medibuntu repository. Mobile Media Converter will not function properly."+chr(13)+"Please install Mencoder from the Medibuntu repository before any conversion.",48,"WARNING!")
-		            ShowURL("http://medibuntu.org/repository.php")
+		            isMedubuntuDetected = false // when a Mencoder profile is selected, this will be checked
 		          end if
 		        end if
 		      end if
@@ -3365,6 +3364,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		isMedubuntuDetected As boolean = true
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		lastFile As string
 	#tag EndProperty
 
@@ -4671,6 +4674,13 @@ End
 		    isFFMPEGprof = True
 		  else
 		    isFFMPEGprof = False
+		    
+		    // warn the user if the Medibuntu Mencoder is not found
+		    if (isMedubuntuDetected = false) then
+		      dim k as integer
+		      k = MsgBox ("The selected profile will probably not function properly because the Mencoder installed is not from the Medibuntu repository."+chr(13)+"Please install Mencoder from the Medibuntu repository and restart Mobile Media Converter.",48,"WARNING!")
+		      ShowURL("http://medibuntu.org/repository.php")
+		    end if
 		  end if
 		  
 		  // refresh window (for Windows drawing issues)
