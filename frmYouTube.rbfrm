@@ -879,45 +879,10 @@ End
 		    
 		    if (sFolder <> "") then  txtOut.Text = sFolder+sTitle
 		    
-		    '
-		    '// find the available formats and the real url
-		    'dim fmt_url_map_Var, urlToDownload as String
-		    'dim fmt_url_map_List(), urlList() as String
-		    'fmt_url_map_Var = getField (content, "&fmt_url_map=")
-		    'fmt_url_map_Var = DecodeURLComponent(fmt_url_map_Var)
-		    'fmt_url_map_List = fmt_url_map_Var.Split("|")
-		    '
-		    '// create the list with the real urls!
-		    'dim i as integer
-		    'for i = 1 to fmt_url_map_List.Ubound-1
-		    '// we have urls of this type: "http://sdfsfdsdf&hello=4,world=54,45" -> remove the part afther the last comma
-		    'dim tempList() as string
-		    'tempList = fmt_url_map_List(i).Split(",") // split the url into elements
-		    '
-		    'dim tempUrl as string
-		    'tempUrl =  tempList(0) // put the 1st element of each url in its place
-		    '
-		    'dim k as integer
-		    'for k = 1 to tempList.Ubound-1 // put every other element of the url in its place exept the last one
-		    'tempUrl = tempUrl + "," + tempList(k)
-		    'next k
-		    '
-		    'urlList.Append tempUrl
-		    'next i
-		    'urlList.Append fmt_url_map_List( fmt_url_map_List.Ubound ) // put last url in the list
-		    '
-		    'if (popQ.ListIndex = 0) then // worst quality
-		    'urlToDownload = urlList(urlList.Ubound)
-		    'elseif  (popQ.ListIndex = 1) then // medium quality
-		    'urlToDownload = urlList(urlList.Ubound/2)
-		    'elseif  (popQ.ListIndex = 2) then // best quality
-		    'urlToDownload = urlList(0)
-		    'end if
-		    
-		    
 		    // find the available formats and the real url
 		    dim fmt_url_map_Var, urlToDownload as String
 		    dim fmt_url_map_List(), urlList() as String
+		    
 		    fmt_url_map_Var = getField (content, "&url_encoded_fmt_stream_map=")
 		    
 		    if (fmt_url_map_Var = "-1") then // warn user if the field cannot be found
@@ -926,32 +891,60 @@ End
 		    end if
 		    
 		    fmt_url_map_Var = DecodeURLComponent(fmt_url_map_Var)
-		    fmt_url_map_List = fmt_url_map_Var.Split("url=")
+		    fmt_url_map_List = fmt_url_map_Var.Split(",")
+		    // MsgBox fmt_url_map_Var
 		    
 		    // create the list with the real urls!
-		    dim i as integer
-		    for i = 1 to fmt_url_map_List.Ubound
+		    dim i,addToI as integer
+		    i = 0
+		    while (i < fmt_url_map_List.Ubound)
 		      
-		      // usualy we have urls of this type: "http://sdfsfdsdf&hello=4,world=54," -> remove the the last comma
-		      dim tempUrl as String
-		      if (right(fmt_url_map_List(i),1) = ",") then // search for the last comma
-		        tempUrl = left(fmt_url_map_List(i), len(fmt_url_map_List(i))-1)  // remove the last comma
+		      // we usually have 'codecs="vp8.0, vorbis"' and we want the comma to stay in the string
+		      dim tempUrl as string
+		      if (left(fmt_url_map_List(i+1),1) = " ") then
+		        tempUrl = fmt_url_map_List(i)+","+fmt_url_map_List(i+1)
+		        addToI = 2
 		      else
 		        tempUrl = fmt_url_map_List(i)
+		        addToI = 1
 		      end if
 		      
-		      // trim the url until the quality tag
-		      dim iQualPos as integer
-		      iQualPos = instr( tempUrl, "&quality=")
-		      if (iQualPos <> 0) then
-		        tempUrl = Left(tempUrl, iQualPos)
-		      else
-		        MsgBox  cstr(iQualPos)
-		        MsgBox tempUrl
+		      // MsgBox "tempUrl: "+tempUrl
+		      
+		      // create a Url that alwys have the"http" in front
+		      dim tagUrl_list() as String
+		      tagUrl_list() = tempUrl.Split("url=")
+		      if (tagUrl_list.Ubound = 1) then
+		        // MsgBox "[0]: "+tagUrl_list(0)
+		        // MsgBox "[1]: "+tagUrl_list(1)
+		        tempUrl = tagUrl_list(1) + "&" + tagUrl_list(0)
 		      end if
+		      
+		      // MsgBox tempUrl
+		      
+		      '// usualy we have urls of this type: "http://sdfsfdsdf&hello=4,world=54," -> remove the the last comma
+		      'dim tempUrl as String
+		      'if (right(fmt_url_map_List(i),1) = ",") then // search for the last comma
+		      'tempUrl = left(fmt_url_map_List(i), len(fmt_url_map_List(i))-1)  // remove the last comma
+		      'else
+		      'tempUrl = fmt_url_map_List(i)
+		      'end if
+		      
+		      '
+		      '// trim the url until the quality tag
+		      'dim iQualPos as integer
+		      'iQualPos = instr( tempUrl, "quality=")
+		      'if (iQualPos <> 0) then
+		      'tempUrl = Left(tempUrl, iQualPos)
+		      'else
+		      '// MsgBox  cstr(iQualPos)
+		      'end if
+		      
 		      
 		      urlList.Append tempUrl
-		    next i
+		      
+		      i = i+addToI
+		    wend
 		    
 		    if (popQ.ListIndex = 0) then // worst quality
 		      urlToDownload = urlList(urlList.Ubound)
@@ -962,7 +955,8 @@ End
 		    end if
 		    
 		    // Replace the "sig" tag with "signature" (change 29/9/2012)
-		    urlToDownload = Replace(urlToDownload, "sig=", "signature=")
+		    urlToDownload = ReplaceAll(urlToDownload, "sig=", "signature=")
+		    urlToDownload = Replace(urlToDownload, "itag=", "")
 		    
 		    // Replace blank and quote characters (change 29/9/2012)
 		    urlToDownload = ReplaceAll(urlToDownload,quote.Text,"%22")
@@ -979,6 +973,8 @@ End
 		    btnAdd.Enabled = False
 		    popQ.Enabled = false
 		    bar.Maximum = 100
+		    
+		    // MsgBox urlToDownload
 		    
 		    // get the acual video file!
 		    http.get (urlToDownload, fOut)

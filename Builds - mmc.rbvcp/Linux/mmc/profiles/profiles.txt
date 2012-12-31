@@ -9,3 +9,4 @@ f-wmv.txt
 f-mov.txt
 m-mp4.txt
 m-iphone.txt
+m-ipodnano.txt

@@ -10,5 +10,5 @@ autoDetectSubs==True
 
 openFolder==False
 youtubeOutput==Desktop
-youtubeQuality==0
+youtubeQuality==1
 lastOutputFolder==H:\Torrents\

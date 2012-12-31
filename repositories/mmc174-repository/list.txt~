@@ -7,6 +7,7 @@
 
 
 |||Mobile Video - 3GP Video (.3gp)||3GP Video. Used in mobile phones. This profile does not support subtitles.||MMC team||1||f-3gp.txt|||
+|||Tablet Video - H264 Video (.mp4)||High compression H264 video suitable for modern tablets / mobile phones. This profile does not support subtitles.||Agustin Bosso||1||f-tablet.txt|||
 |||AVI Video (.avi)||AVI Video. Playable on Windows PCs without any extra codec installation. This profile does not support subtitles.||MMC team||1||f-avi.txt|||
 |||MPEG 1/2 Video (.mpg)||MPEG-1 and MPEG-2 video. This profile does not supports subtitles.||MMC team||1||f-mpeg.txt|||
 |||Windows Media Video (.wmv)||Windows Media Video (WMV) version 8. This profile does not supports subtitles.||MMC team||1||f-wmv.txt|||
@@ -21,9 +22,11 @@
 |||Nokia 5800 XpressMusic Video (.mp4)||High-quality video for your Nokia 5800 XpressMusic. This profile does not support subtitles.||Extero||1||f-nokia5800.txt|||
 |||Jaga Video (.mp4)||Video for your Jaga chinese mobile phones. This profile does not support subtitles.||Georgios Efstathiou||1||f-jaga.txt|||
 
-|||MP4 video with subs (.mp4)||MP4 video that supports subtitles  embending.||MMC team||1||m-mp4.txt|||
+|||MP4 video with subs (.mp4)||MP4 video that supports subtitles embending.||MMC team||1||m-mp4.txt|||
+|||Generic TV-USB Video with subs (.mp4)||Video suitable for playback on TV sets using USB sticks. Supports embended subtitles.||MMC team||1||m-tv.txt|||
 |||XviD Video with subs (.avi)||XviD in AVI container. The popular free MPEG-4 codec. This profile supports subtitles but no AMR decoding.||MMC team||1||m-xvid.txt|||
 |||Apple iPad video with subs (.mp4)||Video compatible with the larger screen of the Apple iPad. This profile supports subtitles but no AMR decoding.||MMC team||1||m-ipad.txt|||
+|||Apple iPod Nano Video with subs (.mp4)||Video compatible with the smaller screen of the Apple iPod Nano. This profile supports subtitles but no AMR decoding.||efren||1||m-ipodnano.txt|||
 |||iPhone/iPod Video with subs (.mp4)||iPhone and iPod compatible video. This profile supports subtitles but no AMR decoding.||MMC team||1||m-iphone.txt|||
 |||PSP Video with subs (.mp4)||Video for your Sony PSP device. This profile supports subtitles but no AMR decoding.||MMC team||1||m-psp.txt|||
 |||Android Video with subs (.mp4)||Video for your mobile Android device. This profile supports subtitles but no AMR decoding.||MMC team||1||m-android.txt|||
@@ -38,7 +41,7 @@
 |||Sony Ericsson Xperia X10 video with subs (.mp4)||Video for your Sony Ericsson Xperia X10 smartphone.||MMC team||1||m-xperia.txt|||
 |||Sony Ericsson Vivaz video with subs (.mp4)||Video for your Sony Ericsson Vivaz smartphone.||MMC team||1||m-vivaz.txt|||
 |||HTC Desire video with subs (.mp4)||Video for your HTC Desire smartphone.||MMC team||1||m-desire.txt|||
-|||Creative Zen video with subs (.mp4)||Video for your Creative Zen X-Fi & Creative Zen Original.||Martronic||1||m-zen.txt|||
-
+|||Creative Zen video with subs (.avi)||Video for your Creative Zen X-Fi & Creative Zen Original.||Martronic||1||m-zen.txt|||
+m-ipodnano.txt
 
 

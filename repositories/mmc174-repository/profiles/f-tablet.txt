@@ -1,0 +1,16 @@
+Tablet Video - H264 Video
+cmd==$FFMPEG -i $INPUT -r $VFPS -b $VB -s $VS -vcodec $VCODEC -flags +loop -me_method hex -g 250 -qcomp 0.6 -qmin 10 -qmax 51 -qdiff 4 -bf 3 -b_strategy 1 -i_qfactor 0.71 -cmp +chroma -subq 8 -me_range 16 -coder 1 -sc_threshold 40 -flags2 +bpyramid+wpred+mixed_refs+dct8x8+fastpskip -keyint_min 25 -refs 3 -trellis 1 -level 30 -directpred 1 -partitions -parti8x8-parti4x4-partp8x8-partp4x4-partb8x8 -threads 0 -acodec $ACODEC -ar $AF -ac $AC -ab $AB  -y $OUTPUT
+AB==128k||196k||96k||64k
+AF==32000||8000||16000||22050||41000
+AC==2||1
+Acodec==libvo_aacenc
+VB==900k||1200k||2200k||3000k
+VFPS==21||19||25
+VS==704x576||128x96||176x144||352x288||640x360||864x480
+VCodec==libx264
+ext==mp4
+defAB==-1
+defVB==1
+icon==mp4.png
+version==1
+itunes==no
