@@ -33,7 +33,7 @@ Begin Window Window1
       Default         =   False
       Enabled         =   True
       Height          =   28
-      HelpTag         =   "Download video clips from YouTube."
+      HelpTag         =   "Download video clips from YouTube and other internet video sites."
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False

@@ -23,7 +23,7 @@
 |||Jaga Video (.mp4)||Video for your Jaga chinese mobile phones. This profile does not support subtitles.||Georgios Efstathiou||1||f-jaga.txt|||
 
 |||MP4 video with subs (.mp4)||MP4 video that supports subtitles embending.||MMC team||1||m-mp4.txt|||
-|||Generic TV-USB Video with subs (.mp4)||Video suitable for playback on TV sets using USB sticks. Supports embended subtitles.||MMC team||1||m-tv.txt|||
+|||Generic TV-USB Video with subs (.mp4)||Video suitable for playback on TV sets using USB sticks. Supports embended subtitles.||MMC team||2||m-tv.txt|||
 |||XviD Video with subs (.avi)||XviD in AVI container. The popular free MPEG-4 codec. This profile supports subtitles but no AMR decoding.||MMC team||1||m-xvid.txt|||
 |||Apple iPad video with subs (.mp4)||Video compatible with the larger screen of the Apple iPad. This profile supports subtitles but no AMR decoding.||MMC team||1||m-ipad.txt|||
 |||Apple iPod Nano Video with subs (.mp4)||Video compatible with the smaller screen of the Apple iPod Nano. This profile supports subtitles but no AMR decoding.||efren||1||m-ipodnano.txt|||

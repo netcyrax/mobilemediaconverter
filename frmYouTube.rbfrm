@@ -21,7 +21,7 @@ Begin Window frmYouTube
    MinWidth        =   64
    Placement       =   3
    Resizeable      =   False
-   Title           =   "YouTube Downloader"
+   Title           =   "YouTube Downloader - Internet Video Downloader"
    Visible         =   True
    Width           =   5.76e+2
    Begin TextField txtIn
@@ -158,7 +158,7 @@ Begin Window frmYouTube
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   49
+      Top             =   50
       Underline       =   ""
       Visible         =   True
       Width           =   44
@@ -522,6 +522,20 @@ Begin Window frmYouTube
       Width           =   32
       yield           =   0
    End
+   Begin Shell shell_youtube_dl
+      Arguments       =   ""
+      Backend         =   ""
+      Height          =   32
+      Index           =   -2147483648
+      Left            =   176
+      LockedInPosition=   False
+      Mode            =   1
+      Scope           =   0
+      TabPanelIndex   =   0
+      TimeOut         =   6000
+      Top             =   290
+      Width           =   32
+   End
 End
 #tag EndWindow
 
@@ -541,6 +555,8 @@ End
 	#tag Event
 		Sub Open()
 		  
+		  
+		  // set the wheel location
 		  Wheel.top = cnvThumb.Top + (cnvThumb.Height-Wheel.Height)/2
 		  Wheel.Left = cnvThumb.Left + (cnvThumb.Width-Wheel.Width)/2
 		  cnvThumb.Refresh
@@ -645,10 +661,13 @@ End
 		  // -------------------------     download process  -----------------------------------
 		  // URL.ex.  http://www.youtube.com/watch?v=nw0fYdy7kBk
 		  
-		  vVar = getVvar ( txtin.Text) // find v Variable in URL
+		  'vVar = getVvar ( txtin.Text) // find v Variable in URL
+		  'if (vVar = "-1") then
+		  'msgbox "Please insert a valid YouTube URL."
+		  'else
 		  
-		  if (vVar = "-1") then
-		    msgbox "Please insert a valid YouTube URL."
+		  if ( txtIn.Text = "") then
+		    MsgBox "Please enter a video url."
 		  else
 		    
 		    // do not add a null image in the thumbnail array
@@ -680,10 +699,111 @@ End
 		    frmYouTube.Close
 		    
 		  end if
-		  
-		  
-		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub disableAll()
+		  
+		  // disable all the controls of the window
+		  
+		  txtout.Enabled=false
+		  txtin.Enabled=false
+		  btnDown.Enabled=false
+		  btnBrowse.Enabled=false
+		  btnAdd.Enabled = False
+		  popQ.Enabled = false
+		  bar.Maximum = 100
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function filenameReady(sTitle as string) As String
+		  
+		  // for removing any character not allowed in file names
+		  
+		  dim q as String
+		  q = quote.Text
+		  
+		  sTitle = ReplaceAll(sTitle, "|", "-")
+		  sTitle = ReplaceAll(sTitle, "+", " ")
+		  sTitle = ReplaceAll(sTitle, "/", "-")
+		  sTitle = ReplaceAll(sTitle, "\", "-")
+		  sTitle = ReplaceAll(sTitle, "?", ".")
+		  sTitle = ReplaceAll(sTitle, "%", ".")
+		  sTitle = ReplaceAll(sTitle, "*", ".")
+		  sTitle = ReplaceAll(sTitle, ":", ".")
+		  sTitle = ReplaceAll(sTitle, "!", ".")
+		  sTitle = ReplaceAll(sTitle, q, ".")
+		  sTitle = ReplaceAll(sTitle, ">", ".")
+		  sTitle = ReplaceAll(sTitle, "<", ".")
+		  sTitle = trim(sTitle) // removes lead and tail white spaces
+		  
+		  Return sTitle
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function findExtByItag(itag as integer) As string
+		  
+		  // get the itag YouTube code and return the extention
+		  // ref. http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs
+		  
+		  
+		  dim ext as String
+		  ext = ".flv" // default extention
+		  
+		  select case itag
+		    
+		  case 5,6,34,35,120
+		    ext = ".flv"
+		    
+		  case 13,17,36
+		    ext  = ".3gp"
+		    
+		  case 18,22,37,38,82,83,84,85
+		    ext = ".mp4"
+		    
+		  case 43,44,45,46,100,101,102
+		    ext = ".webm"
+		    
+		  end select
+		  
+		  // MsgBox (cstr(itag) + EndOfLine + ext)
+		  
+		  return ext
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function findExtByUrl(url as string) As String
+		  
+		  // try to find the extension from the url
+		  
+		  dim temp(),temp2 as String
+		  temp = url.split("?")
+		  
+		  if (temp.Ubound <> 0) then
+		    temp2 = temp(0)
+		  else
+		    temp2 = url
+		  end if
+		  // MsgBox "temp2 "+temp2
+		  
+		  temp = temp2.Split(".")
+		  if (temp.Ubound <> 0) then
+		    dim ext as String
+		    ext = temp( temp.Ubound )
+		    // MsgBox "ext "+ext
+		    if ( (len(ext) = 3) or (len(ext) = 4) ) then
+		      return "."+ext
+		    else
+		      return ".mp4"
+		    end if
+		  else
+		    Return ".mp4"
+		  end if
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -743,6 +863,53 @@ End
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function specialFolder(folderText as string) As String
+		  
+		  // give the folder text and get the actual path in each platform
+		  
+		  dim sFolder as String
+		  sFolder = ""
+		  
+		  if (folderText = "Desktop") then
+		    sFolder = SpecialFolder.Desktop.AbsolutePath
+		  elseif (folderText = "User's Home Folder") then
+		    sFolder = SpecialFolder.UserHome.AbsolutePath
+		  elseif (folderText = "Documents") then
+		    sFolder = SpecialFolder.Documents.AbsolutePath
+		  elseif (folderText = "Music") then
+		    sFolder = SpecialFolder.Music.AbsolutePath
+		  elseif (folderText = "Temporary Folder") then
+		    sFolder = SpecialFolder.Temporary.AbsolutePath
+		  end if
+		  
+		  return sFolder
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub youtube_dl()
+		  
+		  dim q as String
+		  q = Window1.quote.Text
+		  
+		  // set the youtube-dl path
+		  youtube_dl_path = Window1.appDir + "youtube-dl"
+		  
+		  if (TargetLinux = true) then
+		    youtube_dl_path = "python " + q + youtube_dl_path + q
+		  elseif (TargetWin32 = true) then
+		    youtube_dl_path = q + youtube_dl_path + ".exe" + q
+		  end if
+		  
+		  // execute the command
+		  shell_youtube_dl.Execute  youtube_dl_path + " -e -g " + txtIn.Text
+		  
+		  // set the progress bar
+		  bar.Maximum = 0
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		bReady As boolean = false
@@ -764,6 +931,14 @@ End
 		vVar As String
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		youtube_dl_path As string
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		youtube_dl_update As Boolean = false
+	#tag EndProperty
+
 
 #tag EndWindowCode
 
@@ -783,12 +958,20 @@ End
 		  vVar = getVvar ( txtin.Text)
 		  
 		  if (vVar <> "-1") and (InStr(txtIn.Text, "youtube.com") <> 0) then // valid youtube link
+		    
+		    // enable the controls
+		    popQ.Enabled = true
+		    
 		    httpThumb.Yield = True
 		    httpThumb.Get "http://www.youtube.com/get_video_info?&video_id=" + vVar + "&el=detailpage&ps=default&eurl=&gl=US&hl=en"
 		    
 		  else
+		    
+		    // disable the controls
+		    popQ.Enabled = false
+		    
 		    sTitle = ""
-		    frmYouTube.Title = "YouTube Downloader"
+		    frmYouTube.Title = "YouTube Downloader - Internet Video Downloader"
 		    thumb = nil
 		    cnvThumb.Refresh
 		  end if
@@ -829,9 +1012,6 @@ End
 		    return
 		  end if
 		  
-		  dim q as String
-		  q = quote.Text
-		  
 		  // find the t parameter (legacy code)
 		  tVar = getField (content, "&token=")
 		  
@@ -841,43 +1021,6 @@ End
 		    msgBox "Could not find the token parameter. YouTube download algorith is broken."
 		    
 		  else
-		    
-		    // find the clip title and set the out file if required
-		    dim sTitle,saTitle() as String
-		    sTitle = getField (content, "&title=")
-		    
-		    // for removing any character not allowed in file names
-		    sTitle = ReplaceAll(sTitle, "|", "-")
-		    sTitle = ReplaceAll(sTitle, "+", " ")
-		    sTitle = ReplaceAll(sTitle, "/", "-")
-		    sTitle = ReplaceAll(sTitle, "\", "-")
-		    sTitle = ReplaceAll(sTitle, "?", ".")
-		    sTitle = ReplaceAll(sTitle, "%", ".")
-		    sTitle = ReplaceAll(sTitle, "*", ".")
-		    sTitle = ReplaceAll(sTitle, ":", ".")
-		    sTitle = ReplaceAll(sTitle, "!", ".")
-		    sTitle = ReplaceAll(sTitle, q, ".")
-		    sTitle = ReplaceAll(sTitle, ">", ".")
-		    sTitle = ReplaceAll(sTitle, "<", ".")
-		    sTitle = "YouTube - " + trim(sTitle) +".flv" // removes lead and tail white spaces
-		    
-		    // prepare the output file path
-		    dim sFolder,sTxtOut as string
-		    sTxtOut = txtOut.Text
-		    
-		    if (sTxtOut = "Desktop") then
-		      sFolder = SpecialFolder.Desktop.AbsolutePath
-		    elseif (sTxtOut = "User's Home Folder") then
-		      sFolder = SpecialFolder.UserHome.AbsolutePath
-		    elseif (sTxtOut = "Documents") then
-		      sFolder = SpecialFolder.Documents.AbsolutePath
-		    elseif (sTxtOut = "Music") then
-		      sFolder = SpecialFolder.Music.AbsolutePath
-		    elseif (sTxtOut = "Temporary Folder") then
-		      sFolder = SpecialFolder.Temporary.AbsolutePath
-		    end if
-		    
-		    if (sFolder <> "") then  txtOut.Text = sFolder+sTitle
 		    
 		    // find the available formats and the real url
 		    dim fmt_url_map_Var, urlToDownload as String
@@ -920,27 +1063,6 @@ End
 		        tempUrl = tagUrl_list(1) + "&" + tagUrl_list(0)
 		      end if
 		      
-		      // MsgBox tempUrl
-		      
-		      '// usualy we have urls of this type: "http://sdfsfdsdf&hello=4,world=54," -> remove the the last comma
-		      'dim tempUrl as String
-		      'if (right(fmt_url_map_List(i),1) = ",") then // search for the last comma
-		      'tempUrl = left(fmt_url_map_List(i), len(fmt_url_map_List(i))-1)  // remove the last comma
-		      'else
-		      'tempUrl = fmt_url_map_List(i)
-		      'end if
-		      
-		      '
-		      '// trim the url until the quality tag
-		      'dim iQualPos as integer
-		      'iQualPos = instr( tempUrl, "quality=")
-		      'if (iQualPos <> 0) then
-		      'tempUrl = Left(tempUrl, iQualPos)
-		      'else
-		      '// MsgBox  cstr(iQualPos)
-		      'end if
-		      
-		      
 		      urlList.Append tempUrl
 		      
 		      i = i+addToI
@@ -962,17 +1084,25 @@ End
 		    urlToDownload = ReplaceAll(urlToDownload,quote.Text,"%22")
 		    urlToDownload = ReplaceAll(urlToDownload," ","%20")
 		    
+		    // find the clip title and set the out file if required
+		    dim sTitle,saTitle(),sItag as String
+		    sTitle = getField (content, "&title=")
+		    
+		    sTitle = filenameReady(sTitle) // for removing any character not allowed in file names
+		    sItag = getField (urlToDownload, "&itag=")
+		    sTitle = sTitle + findExtByItag ( val(sItag) ) // find the correct ext based on the itag
+		    
+		    // prepare the output file path
+		    dim sFolder,sTxtOut as string
+		    sTxtOut = txtOut.Text
+		    sFolder = specialFolder(sTxtOut) // get the actual path from the text like "Desktop"
+		    if (sFolder <> "") then  txtOut.Text = sFolder+sTitle
+		    
 		    dim fOut as FolderItem
 		    fOut = new FolderItem(txtout.Text)
 		    
 		    // prepare the windows for the download
-		    txtout.Enabled=false
-		    txtin.Enabled=false
-		    btnDown.Enabled=false
-		    btnBrowse.Enabled=false
-		    btnAdd.Enabled = False
-		    popQ.Enabled = false
-		    bar.Maximum = 100
+		    disableAll()
 		    
 		    // MsgBox urlToDownload
 		    
@@ -1044,6 +1174,11 @@ End
 		    Return
 		  end if
 		  
+		  if (txtIn.Text = "") then
+		    MsgBox "Please enter a video URL."
+		    Return
+		  end if
+		  
 		  
 		  // -------------------------     download process  -----------------------------------
 		  // URL.ex.  http://www.youtube.com/watch?v=nw0fYdy7kBk
@@ -1051,10 +1186,10 @@ End
 		  vVar = getVvar ( txtin.Text)
 		  
 		  if (vVar = "-1") then
-		    msgbox "Please insert a valid YouTube URL."
-		  else
-		    _
 		    
+		    youtube_dl()
+		    
+		  else
 		    HTTP.Get "http://www.youtube.com/get_video_info?&video_id=" + vVar + "&el=embedded&ps=default&eurl=&gl=US&hl=en"
 		    
 		    bar.Maximum = 0
@@ -1079,7 +1214,7 @@ End
 		  
 		  //then test for nil to see if the user clicked cancel
 		  if f <> nil then
-		    txtout.Text = dlg.Result.AbsolutePath+".flv"
+		    txtout.Text = dlg.Result.AbsolutePath
 		    //its a file!
 		  end if
 		End Sub
@@ -1174,40 +1309,43 @@ End
 	#tag Event
 		Sub Action()
 		  
-		  dim base as new MenuItem
-		  dim hitItem as MenuItem
-		  dim NewChild As MenuItem
+		  addSingleToQ()
 		  
-		  NewChild=new MenuItem
-		  NewChild.Name="single"
-		  NewChild.Text="Single Video"
-		  base.append NewChild
-		  
-		  NewChild=new MenuItem
-		  NewChild.Name="playlist"
-		  NewChild.Text="Playlist"
-		  base.append NewChild
-		  
-		  // show the popupMenu and get the selected item!
-		  dim x,y as Integer
-		  x = frmYouTube.Left + me.Left
-		  y = frmYouTube.Top +me.top + me.Height
-		  try
-		    hitItem = base.PopUp (x, y)
-		  end try
-		  
-		  if (hitItem = nil) then
-		    return
-		    
-		  elseif  (hitItem.Name = "single") then
-		    
-		    addSingleToQ()
-		    
-		  elseif  (hitItem.Name = "playlist") then
-		    
-		    addPlaylistToQ()
-		    
-		  end if
+		  // old menu for adding a playlist
+		  'dim base as new MenuItem
+		  'dim hitItem as MenuItem
+		  'dim NewChild As MenuItem
+		  '
+		  'NewChild=new MenuItem
+		  'NewChild.Name="single"
+		  'NewChild.Text="Single Video"
+		  'base.append NewChild
+		  '
+		  'NewChild=new MenuItem
+		  'NewChild.Name="playlist"
+		  'NewChild.Text="Playlist"
+		  'base.append NewChild
+		  '
+		  '// show the popupMenu and get the selected item!
+		  'dim x,y as Integer
+		  'x = frmYouTube.Left + me.Left
+		  'y = frmYouTube.Top +me.top + me.Height
+		  'try
+		  'hitItem = base.PopUp (x, y)
+		  'end try
+		  '
+		  'if (hitItem = nil) then
+		  'return
+		  '
+		  'elseif  (hitItem.Name = "single") then
+		  '
+		  'addSingleToQ()
+		  '
+		  'elseif  (hitItem.Name = "playlist") then
+		  '
+		  'addPlaylistToQ()
+		  '
+		  'end if
 		  
 		End Sub
 	#tag EndEvent
@@ -1316,6 +1454,56 @@ End
 		  
 		  
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events shell_youtube_dl
+	#tag Event
+		Sub Completed()
+		  
+		  // restore the progress bar
+		  bar.Maximum = 100
+		  
+		  dim sRealUrl,sTitle,sTemp() as String
+		  // MsgBox shell_youtube_dl.Result
+		  sTemp = shell_youtube_dl.Result.Split("http://")
+		  
+		  if (sTemp.Ubound = 0) then // error has occured
+		    
+		    if (youtube_dl_update = false) then // first time that the youtube-dl has failes
+		      
+		      youtube_dl_update = true
+		      shell_youtube_dl.Execute youtube_dl_path + " -U"
+		      
+		    else  // second time that the youtube-dl has failed
+		      
+		      MsgBox "Cannot download selected video."
+		      frmYouTube.Close
+		      
+		    end if
+		    
+		  else // found the title and the url, continue normally
+		    
+		    sTitle = sTemp(0)
+		    sTitle = filenameReady(sTitle) // for removing any character not allowed in file names
+		    
+		    sRealUrl = "http://"+sTemp(1).ReplaceAll(EndOfLine,"")
+		    
+		    // MsgBox sTitle + EndOfLine + sRealUrl
+		    
+		    // prepare the output file path
+		    dim sFolder,sTxtOut as string
+		    sTxtOut = txtOut.Text
+		    sFolder = specialFolder(sTxtOut) // get the actual path from the text like "Desktop"
+		    if (sFolder <> "") then  txtOut.Text = sFolder+sTitle+findExtByUrl(sRealUrl)
+		    
+		    // download the file
+		    dim fOut as FolderItem
+		    fOut = new FolderItem(txtOut.Text)
+		    disableAll() // disable all controls in the window
+		    http.get(sRealUrl, fOut)
+		    
+		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents

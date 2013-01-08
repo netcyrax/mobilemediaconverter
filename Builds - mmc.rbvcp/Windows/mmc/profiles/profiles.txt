@@ -21,4 +21,5 @@ f-genoa.txt
 f-nokia5800.txt
 m-nokiaN900.txt
 m-nokiaX6.txt
+m-tv.txt
 m-blackberryTorch9800.txt
