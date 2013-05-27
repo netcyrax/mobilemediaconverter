@@ -191,7 +191,7 @@ Begin Window frmCrop
       Visible         =   True
       Width           =   473
    End
-   Begin PushButton btnOK
+   Begin PushButton btnOKold
       AutoDeactivate  =   True
       Bold            =   True
       ButtonStyle     =   0
@@ -204,7 +204,7 @@ Begin Window frmCrop
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   453
+      Left            =   433
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   ""
@@ -217,12 +217,12 @@ Begin Window frmCrop
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   348
+      Top             =   455
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   80
    End
-   Begin PushButton btnDoNot
+   Begin PushButton btnDoNotOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -235,7 +235,7 @@ Begin Window frmCrop
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   287
+      Left            =   267
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   ""
@@ -248,9 +248,9 @@ Begin Window frmCrop
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   348
+      Top             =   455
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   154
    End
    Begin Label lblTime
@@ -457,6 +457,66 @@ Begin Window frmCrop
       X2              =   -25
       Y1              =   185
       Y2              =   274
+   End
+   Begin PSButton btnOK
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "OK"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   8511487
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   433
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   350
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   100
+   End
+   Begin PSButton btnDoNot
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Do not crop the clip"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   1793927167
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   229
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   13
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   350
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   198
    End
 End
 #tag EndWindow
@@ -736,7 +796,104 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events btnOKold
+	#tag Event
+		Sub Action()
+		  
+		  
+		  
+		  // calculate the pixels of the real video that needed to be crop
+		  'barMax                           barValue
+		  'picMax (width/height)           x
+		  
+		  dim iTop,iBottom,iLeft,iRight as Integer
+		  iTop = (scr.Height*barTop.Value) \ barTop.Maximum
+		  iBottom = (scr.Height*   (barBottom.Maximum-barBottom.Value) ) \ barTop.Maximum
+		  iLeft = (scr.Width*barLeft.Value) \ barLeft.Maximum
+		  iRight = (scr.Width*   (barRight.Maximum-barRight.Value) ) \ barRight.Maximum
+		  
+		  
+		  // check that the crop pixels are multiples of 2
+		  if (iTop mod 2 <> 0) then
+		    itop = itop+1
+		  end if
+		  
+		  if (iBottom mod 2 <> 0) then
+		    iBottom = iBottom+1
+		  end if
+		  
+		  if (iLeft mod 2 <> 0) then
+		    iLeft = iLeft+1
+		  end if
+		  
+		  if (iRight mod 2 <> 0) then
+		    iRight = iRight+1
+		  end if
+		  
+		  
+		  // set values in main window
+		  Window1.lstIn.Cell( Window1.lstIn.ListIndex, 3) = cstr(iTop)
+		  Window1.lstIn.Cell( Window1.lstIn.ListIndex, 4) = cstr(iBottom)
+		  Window1.lstIn.Cell( Window1.lstIn.ListIndex, 5) = cstr(iLeft)
+		  Window1.lstIn.Cell( Window1.lstIn.ListIndex, 6) = cstr(iRight)
+		  Window1.lstin.Cell( Window1.lstIn.ListIndex, 10) = cstr(scr.Height)+":"+cstr(scr.Width)
+		  
+		  
+		  
+		  
+		  // delete the current screenshot
+		  dim f as FolderItem
+		  f = GetFolderItem(SpecialFolder.Temporary.AbsolutePath + "scr.png")
+		  f.Delete
+		  
+		  // set aspect ratio
+		  if (chkAR.Value = true) then
+		    Window1.lstIn.Cell( Window1.lstIn.ListIndex, 7) = popAR.Text
+		  else
+		    Window1.lstIn.Cell( Window1.lstIn.ListIndex, 7) = ""
+		  end if
+		  
+		  // update the thumbnail
+		  Window1.scrs ( Window1.lstIn.ListIndex ) = scr
+		  
+		  // unload the window
+		  frmCrop.Close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnDoNotOld
+	#tag Event
+		Sub Action()
+		  Window1.lstIn.Cell( Window1.lstIn.ListIndex, 3) = ""
+		  Window1.lstIn.Cell( Window1.lstIn.ListIndex, 4) = ""
+		  Window1.lstIn.Cell( Window1.lstIn.ListIndex, 5) = ""
+		  Window1.lstIn.Cell( Window1.lstIn.ListIndex, 6) = ""
+		  
+		  
+		  // delete the current screenshot
+		  dim f as FolderItem
+		  f = GetFolderItem(Window1.appDir + "scr.png")
+		  f.Delete
+		  
+		  
+		  // unload the window
+		  frmCrop.Close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events chkAR
+	#tag Event
+		Sub Action()
+		  popAR.Enabled = chkAR.Value
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events btnOK
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
 	#tag Event
 		Sub Action()
 		  
@@ -803,6 +960,11 @@ End
 #tag EndEvents
 #tag Events btnDoNot
 	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
 		Sub Action()
 		  Window1.lstIn.Cell( Window1.lstIn.ListIndex, 3) = ""
 		  Window1.lstIn.Cell( Window1.lstIn.ListIndex, 4) = ""
@@ -818,13 +980,6 @@ End
 		  
 		  // unload the window
 		  frmCrop.Close
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events chkAR
-	#tag Event
-		Sub Action()
-		  popAR.Enabled = chkAR.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents

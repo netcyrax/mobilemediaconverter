@@ -7,7 +7,7 @@ Begin Window frmDVD
    Frame           =   1
    FullScreen      =   False
    HasBackColor    =   False
-   Height          =   1.91e+2
+   Height          =   1.84e+2
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -58,7 +58,7 @@ Begin Window frmDVD
       Visible         =   True
       Width           =   151
    End
-   Begin PushButton btnBrowse
+   Begin PushButton btnBrowseOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -71,7 +71,7 @@ Begin Window frmDVD
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   273
+      Left            =   435
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -86,7 +86,7 @@ Begin Window frmDVD
       TextUnit        =   0
       Top             =   9
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   116
    End
    Begin Label lblFolder
@@ -117,7 +117,7 @@ Begin Window frmDVD
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   14
+      Top             =   13
       Transparent     =   False
       Underline       =   ""
       Visible         =   True
@@ -319,7 +319,7 @@ Begin Window frmDVD
       Visible         =   True
       Width           =   116
    End
-   Begin PushButton btnAdd
+   Begin PushButton btnAddOld
       AutoDeactivate  =   True
       Bold            =   True
       ButtonStyle     =   0
@@ -332,7 +332,7 @@ Begin Window frmDVD
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   236
+      Left            =   248
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -345,9 +345,9 @@ Begin Window frmDVD
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   148
+      Top             =   233
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   153
    End
    Begin Shell shel
@@ -484,6 +484,66 @@ Begin Window frmDVD
       Visible         =   False
       Width           =   116
    End
+   Begin PSButton btnAdd
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Add DVD Title"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   8511487
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   208
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   17
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   152
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   181
+   End
+   Begin PSButton btnBrowse
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Browse"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   273
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   18
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   14
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   116
+   End
 End
 #tag EndWindow
 
@@ -584,7 +644,7 @@ End
 
 #tag EndWindowCode
 
-#tag Events btnBrowse
+#tag Events btnBrowseOld
 	#tag Event
 		Sub Action()
 		  dim dlg as saveAsDialog
@@ -612,7 +672,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnAdd
+#tag Events btnAddOld
 	#tag Event
 		Sub Action()
 		  
@@ -763,6 +823,90 @@ End
 		    myMatch = rg.Search()
 		  Wend
 		  popSubs.ListIndex = 0
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnAdd
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  
+		  // validation check
+		  if ( val(txtTrack.Text) = 0) then
+		    MsgBox "Please enter a valid DVD track."
+		    return
+		  end if
+		  
+		  // update the thumbnail array
+		  if (Window1.scrs.Ubound = Window1.lstIn.ListCount-1) then
+		    Window1.scrs.Append picDVD
+		  else
+		    Window1.scrs(Window1.lstIn.ListCount) = picDVD
+		  end if
+		  
+		  // add it to the queue
+		  dim toAdd as String
+		  dim q as String
+		  q = window1.quote.Text
+		  toAdd = "Rip DVD Track " + txtTrack.Text
+		  if (lblFolder.Text <> "Auto") then
+		    toAdd = toAdd + " from " + q + lblFolder.Text + q
+		  end if
+		  Window1.lstIn.AddRow (toAdd)
+		  
+		  //add the correct $INPUT replacement in the file name column
+		  dim inputForDVD as String
+		  inputForDVD = " dvd://" + txtTrack.Text
+		  if (lblFolder.Text <> "Auto") then inputForDVD = inputForDVD + " -dvd-device " + lblFolder.Text
+		  if (popAudio.Text <> "Default") then
+		    dim temp() as string
+		    temp = split(popAudio.Text, " - ")
+		    inputForDVD = inputForDVD + " -aid " + temp(1)
+		  end if
+		  if (chkNoSubs.Value = true) then
+		    inputForDVD = inputForDVD + " -nosub"
+		  elseif (popSubs.Text <> "Default") then
+		    dim temp() as string
+		    temp = split(popSubs.Text, " - ")
+		    inputForDVD = inputForDVD + " -sid " + temp(1)
+		  end if
+		  Window1.lstIn.cell (window1.lstIn.LastIndex, 11) = inputForDVD
+		  Window1.lstIn.cell (window1.lstIn.LastIndex, 1) = "DVD track "+txtTrack.Text
+		  
+		  // display the drop box
+		  Window1.dropBox()
+		  
+		  frmDvd.Close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnBrowse
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  dim dlg as saveAsDialog
+		  dim folDlg as selectFolderDialog
+		  dim f as folderitem
+		  
+		  folDlg = new selectFolderDialog
+		  folDlg.InitialDirectory = SpecialFolder.UserHome
+		  
+		  f = folDlg.ShowModal
+		  
+		  //then test for nil to see if the user clicked cancel
+		  if f <> nil then
+		    lblFolder.Text = Window1.PosixPath(folDlg.Result.AbsolutePath)
+		    queryDVD()
+		    //its a folder!
+		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents

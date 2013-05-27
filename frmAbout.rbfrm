@@ -24,7 +24,7 @@ Begin Window frmAbout
    Title           =   "About Mobile Media Converter"
    Visible         =   True
    Width           =   3.68e+2
-   Begin PushButton PushButton1
+   Begin PushButton PushButton1Old
       AutoDeactivate  =   True
       Bold            =   True
       ButtonStyle     =   0
@@ -50,12 +50,12 @@ Begin Window frmAbout
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   304
+      Top             =   382
       Underline       =   False
-      Visible         =   True
+      Visible         =   False
       Width           =   80
    End
-   Begin PushButton btnMore
+   Begin PushButton btnMoreOld
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   0
@@ -68,7 +68,7 @@ Begin Window frmAbout
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   168
+      Left            =   109
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -81,7 +81,7 @@ Begin Window frmAbout
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   304
+      Top             =   382
       Underline       =   False
       Visible         =   True
       Width           =   97
@@ -283,6 +283,66 @@ Begin Window frmAbout
       Visible         =   True
       Width           =   369
    End
+   Begin PSButton PushButton1
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "OK"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   8511487
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   226
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   308
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   130
+   End
+   Begin PSButton btnMore
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "More"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   92
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   308
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   130
+   End
 End
 #tag EndWindow
 
@@ -318,14 +378,14 @@ End
 
 #tag EndWindowCode
 
-#tag Events PushButton1
+#tag Events PushButton1Old
 	#tag Event
 		Sub Action()
 		  frmAbout.Close
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnMore
+#tag Events btnMoreOld
 	#tag Event
 		Sub Action()
 		  frmAbout.more2()
@@ -347,5 +407,29 @@ End
 		  
 		  ShowURL "mailto:mmc@miksoft.net"
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton1
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  frmAbout.Close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnMore
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  frmAbout.more2()
+		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -23,7 +23,7 @@ Begin Window frmYouTube
    Resizeable      =   False
    Title           =   "YouTube Downloader - Internet Video Downloader"
    Visible         =   True
-   Width           =   5.76e+2
+   Width           =   6.03e+2
    Begin TextField txtIn
       AcceptTabs      =   ""
       Alignment       =   0
@@ -65,7 +65,7 @@ Begin Window frmYouTube
       Underline       =   ""
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   323
+      Width           =   350
    End
    Begin HTTPSocket HTTP
       Address         =   ""
@@ -96,12 +96,12 @@ Begin Window frmYouTube
       Maximum         =   100
       Scope           =   0
       TabPanelIndex   =   0
-      Top             =   90
+      Top             =   89
       Value           =   0
       Visible         =   True
-      Width           =   202
+      Width           =   229
    End
-   Begin PushButton btnDown
+   Begin PushButton btnDownOld
       AutoDeactivate  =   True
       Bold            =   True
       ButtonStyle     =   0
@@ -127,12 +127,12 @@ Begin Window frmYouTube
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   120
+      Top             =   180
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   179
    End
-   Begin PushButton btnBrowse
+   Begin PushButton btnBrowseOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -145,7 +145,7 @@ Begin Window frmYouTube
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   512
+      Left            =   622
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   ""
@@ -158,9 +158,9 @@ Begin Window frmYouTube
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   50
+      Top             =   45
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   44
    End
    Begin Label quote
@@ -322,6 +322,67 @@ Begin Window frmYouTube
       UseFocusRing    =   True
       Visible         =   True
       Width           =   128
+      Begin Canvas cnvProgress
+         AcceptFocus     =   ""
+         AcceptTabs      =   ""
+         AutoDeactivate  =   True
+         Backdrop        =   341889023
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         Height          =   108
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "cnvThumb"
+         Left            =   37
+         LockBottom      =   ""
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   ""
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   34
+         UseFocusRing    =   True
+         Visible         =   False
+         Width           =   100
+      End
+      Begin Label lblProgress
+         AutoDeactivate  =   True
+         Bold            =   ""
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   100
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "cnvThumb"
+         Italic          =   ""
+         Left            =   52
+         LockBottom      =   ""
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   ""
+         LockTop         =   True
+         Multiline       =   ""
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   1
+         TabPanelIndex   =   0
+         Text            =   "0%"
+         TextAlign       =   1
+         TextColor       =   &hFFFFFF
+         TextFont        =   "System"
+         TextSize        =   18
+         TextUnit        =   0
+         Top             =   36
+         Transparent     =   True
+         Underline       =   ""
+         Visible         =   False
+         Width           =   72
+      End
    End
    Begin HTTPSocket httpThumb
       Address         =   ""
@@ -391,7 +452,7 @@ Begin Window frmYouTube
       Visible         =   False
       Width           =   16
    End
-   Begin PushButton btnAdd
+   Begin PushButton btnAddOld
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   0
@@ -417,12 +478,12 @@ Begin Window frmYouTube
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   120
+      Top             =   180
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   117
    End
-   Begin PushButton btnClose
+   Begin PushButton btnCloseOld
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   0
@@ -448,9 +509,9 @@ Begin Window frmYouTube
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   120
+      Top             =   180
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   79
    End
    Begin ComboBox txtOut
@@ -483,7 +544,7 @@ Begin Window frmYouTube
       Underline       =   ""
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   273
+      Width           =   294
    End
    Begin Timer UnityProgress
       Height          =   32
@@ -535,6 +596,126 @@ Begin Window frmYouTube
       TimeOut         =   6000
       Top             =   290
       Width           =   32
+   End
+   Begin PSButton btnAdd
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Add to queue"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   8511487
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   354
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   22
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   129
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   144
+   End
+   Begin PSButton btnClose
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Close"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   1793927167
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   504
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   23
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   129
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   79
+   End
+   Begin PSButton btnDown
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Download"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   1141452799
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   163
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   24
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   129
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   179
+   End
+   Begin PSButton btnBrowse
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "..."
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   539
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   25
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   53
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   44
    End
 End
 #tag EndWindow
@@ -988,7 +1169,9 @@ End
 		  try
 		    
 		    dPercent = (bytesReceived/totalBytes)*100
-		    btnDown.Caption = cstr( dPercent  ) + "%"
+		    
+		    lblProgress.Text = cstr( dPercent  ) + "%"
+		    
 		    bar.Value =  dPercent
 		    
 		    dUnityPercent = dPercent/100
@@ -1106,6 +1289,10 @@ End
 		    
 		    // MsgBox urlToDownload
 		    
+		    // display the progress text
+		    cnvProgress.Visible = True
+		    lblProgress.Visible = True
+		    
 		    // get the acual video file!
 		    http.get (urlToDownload, fOut)
 		    
@@ -1164,7 +1351,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnDown
+#tag Events btnDownOld
 	#tag Event
 		Sub Action()
 		  
@@ -1200,7 +1387,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnBrowse
+#tag Events btnBrowseOld
 	#tag Event
 		Sub Action()
 		  dim dlg as saveAsDialog
@@ -1276,6 +1463,13 @@ End
 		  try
 		    
 		    thumb = file.OpenAsPicture
+		    
+		    // round corners
+		    thumb.Mask.Graphics.ForeColor = &CFFFFFF
+		    thumb.Mask.Graphics.FillRect 0,0, thumb.Width, thumb.Height
+		    thumb.Mask.Graphics.ForeColor = &C000000
+		    thumb.Mask.Graphics.FillRoundRect 0,0,thumb.Width, thumb.Height, thumb.Width*0.05, 0.05*thumb.Height
+		    
 		    cnvThumb.Refresh
 		    
 		    Wheel.Visible = False
@@ -1305,7 +1499,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnAdd
+#tag Events btnAddOld
 	#tag Event
 		Sub Action()
 		  
@@ -1350,7 +1544,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnClose
+#tag Events btnCloseOld
 	#tag Event
 		Sub Action()
 		  frmYouTube.Close
@@ -1503,6 +1697,134 @@ End
 		    disableAll() // disable all controls in the window
 		    http.get(sRealUrl, fOut)
 		    
+		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnAdd
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  
+		  addSingleToQ()
+		  
+		  // old menu for adding a playlist
+		  'dim base as new MenuItem
+		  'dim hitItem as MenuItem
+		  'dim NewChild As MenuItem
+		  '
+		  'NewChild=new MenuItem
+		  'NewChild.Name="single"
+		  'NewChild.Text="Single Video"
+		  'base.append NewChild
+		  '
+		  'NewChild=new MenuItem
+		  'NewChild.Name="playlist"
+		  'NewChild.Text="Playlist"
+		  'base.append NewChild
+		  '
+		  '// show the popupMenu and get the selected item!
+		  'dim x,y as Integer
+		  'x = frmYouTube.Left + me.Left
+		  'y = frmYouTube.Top +me.top + me.Height
+		  'try
+		  'hitItem = base.PopUp (x, y)
+		  'end try
+		  '
+		  'if (hitItem = nil) then
+		  'return
+		  '
+		  'elseif  (hitItem.Name = "single") then
+		  '
+		  'addSingleToQ()
+		  '
+		  'elseif  (hitItem.Name = "playlist") then
+		  '
+		  'addPlaylistToQ()
+		  '
+		  'end if
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnClose
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  frmYouTube.Close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnDown
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  
+		  // -------------------------------        local file validation        ------------------------------
+		  if (txtOut.Text = "") then
+		    msgbox "Please select a location to save the YouTube video."
+		    Return
+		  end if
+		  
+		  if (txtIn.Text = "") then
+		    MsgBox "Please enter a video URL."
+		    Return
+		  end if
+		  
+		  
+		  // -------------------------     download process  -----------------------------------
+		  // URL.ex.  http://www.youtube.com/watch?v=nw0fYdy7kBk
+		  
+		  vVar = getVvar ( txtin.Text)
+		  
+		  if (vVar = "-1") then
+		    
+		    youtube_dl()
+		    
+		  else
+		    HTTP.Get "http://www.youtube.com/get_video_info?&video_id=" + vVar + "&el=embedded&ps=default&eurl=&gl=US&hl=en"
+		    
+		    bar.Maximum = 0
+		  end if
+		  
+		  // start the Ubuntu Unity integration with 200ms latency
+		  UnityProgress.Mode = 2
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnBrowse
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  dim dlg as saveAsDialog
+		  dim f as folderitem
+		  
+		  dlg = new saveAsDialog
+		  dlg.Filter = FlashVIdeo.All
+		  dlg.InitialDirectory = SpecialFolder.UserHome
+		  
+		  f = dlg.ShowModal
+		  
+		  //then test for nil to see if the user clicked cancel
+		  if f <> nil then
+		    txtout.Text = dlg.Result.AbsolutePath
+		    //its a file!
 		  end if
 		End Sub
 	#tag EndEvent

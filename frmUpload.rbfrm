@@ -7,7 +7,7 @@ Begin Window frmUpload
    Frame           =   1
    FullScreen      =   False
    HasBackColor    =   False
-   Height          =   3.39e+2
+   Height          =   3.28e+2
    ImplicitInstance=   True
    LiveResize      =   False
    MacProcID       =   0
@@ -24,7 +24,7 @@ Begin Window frmUpload
    Title           =   "Submit your profile"
    Visible         =   True
    Width           =   3.94e+2
-   Begin PushButton btnSend
+   Begin PushButton btnSendOld
       AutoDeactivate  =   True
       Bold            =   True
       ButtonStyle     =   0
@@ -50,12 +50,12 @@ Begin Window frmUpload
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   291
+      Top             =   341
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   80
    End
-   Begin PushButton btnDoNot
+   Begin PushButton btnDoNotOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -81,9 +81,9 @@ Begin Window frmUpload
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   291
+      Top             =   341
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   199
    End
    Begin Label lblName
@@ -108,7 +108,6 @@ Begin Window frmUpload
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Profile name:"
       TextAlign       =   0
       TextColor       =   &h000000
@@ -185,7 +184,6 @@ Begin Window frmUpload
       Selectable      =   False
       TabIndex        =   4
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Submitter:"
       TextAlign       =   0
       TextColor       =   &h000000
@@ -262,7 +260,6 @@ Begin Window frmUpload
       Selectable      =   False
       TabIndex        =   6
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Email:"
       TextAlign       =   0
       TextColor       =   &h000000
@@ -339,7 +336,6 @@ Begin Window frmUpload
       Selectable      =   False
       TabIndex        =   8
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "(Optional) Comments / Description:"
       TextAlign       =   0
       TextColor       =   &h000000
@@ -364,7 +360,7 @@ Begin Window frmUpload
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   104
+      Height          =   102
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
@@ -399,18 +395,14 @@ Begin Window frmUpload
    End
    Begin HTTPSocket HTTP
       Address         =   ""
-      Enabled         =   True
       Height          =   32
       Index           =   -2147483648
       Left            =   430
       LockedInPosition=   False
       Port            =   0
       Scope           =   0
-      TabIndex        =   10
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   2
-      Visible         =   True
       Width           =   32
       yield           =   0
    End
@@ -457,7 +449,6 @@ Begin Window frmUpload
       Selectable      =   False
       TabIndex        =   11
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "File to attatch:"
       TextAlign       =   0
       TextColor       =   &h000000
@@ -492,7 +483,6 @@ Begin Window frmUpload
       Selectable      =   False
       TabIndex        =   12
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "."
       TextAlign       =   0
       TextColor       =   &h000000
@@ -504,6 +494,66 @@ Begin Window frmUpload
       Underline       =   ""
       Visible         =   True
       Width           =   229
+   End
+   Begin PSButton btnSend
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Send it!"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   8511487
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   244
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   13
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   291
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   130
+   End
+   Begin PSButton btnDoNot
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Do not submit anything"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   1793927167
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   14
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   291
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   212
    End
 End
 #tag EndWindow
@@ -708,7 +758,68 @@ End
 
 #tag EndWindowCode
 
+#tag Events btnSendOld
+	#tag Event
+		Sub Action()
+		  
+		  
+		  if (txtName.Text = "") then
+		    MsgBox "A name for your profile is required"
+		  elseif (txtSubmitter.Text = "") then
+		    MsgBox "An author for this profile is required"
+		  elseif ( isEmailValid(txtEmail.Text) = False ) then
+		    MsgBox "The email you have entered is not valid"
+		  else
+		    dim vars as new dictionary
+		    vars.value("profname") = txtName.Text
+		    vars.value("submitter") = txtSubmitter.Text
+		    vars.value("email") = txtEmail.Text
+		    vars.value("desc") = txtDesc.Text
+		    vars.Value("profile") = profileToText( Window1.profilesDir + profFileName )
+		    HTTP.setformdata(vars)
+		    
+		    HTTP.post("http://www.miksoft.net/mobileMediaConverterSubmit.php")
+		    
+		    disEnableAll( False )
+		    
+		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnDoNotOld
+	#tag Event
+		Sub Action()
+		  frmUpload.Close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events HTTP
+	#tag Event
+		Sub Error(code as integer)
+		  disEnableAll( True )
+		  MsgBox "An error has occured with the connection. Your profile has not been submitted."
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub PageReceived(url as string, httpStatus as integer, headers as internetHeaders, content as string)
+		  
+		  if (content = "ok") then
+		    disEnableAll( True )
+		    MsgBox "Your profile has been submitted successfully. Thank you!"
+		    frmUpload.Close
+		  else
+		    disEnableAll( True )
+		    MsgBox "Your profile has not been submitted. Please try again."
+		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events btnSend
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
 	#tag Event
 		Sub Action()
 		  
@@ -738,29 +849,13 @@ End
 #tag EndEvents
 #tag Events btnDoNot
 	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
 		Sub Action()
 		  frmUpload.Close
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events HTTP
-	#tag Event
-		Sub Error(code as integer)
-		  disEnableAll( True )
-		  MsgBox "An error has occured with the connection. Your profile has not been submitted."
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub PageReceived(url as string, httpStatus as integer, headers as internetHeaders, content as string)
-		  
-		  if (content = "ok") then
-		    disEnableAll( True )
-		    MsgBox "Your profile has been submitted successfully. Thank you!"
-		    frmUpload.Close
-		  else
-		    disEnableAll( True )
-		    MsgBox "Your profile has not been submitted. Please try again."
-		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents

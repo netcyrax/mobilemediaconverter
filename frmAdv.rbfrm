@@ -7,7 +7,7 @@ Begin Window frmAdv
    Frame           =   1
    FullScreen      =   False
    HasBackColor    =   False
-   Height          =   2.16e+2
+   Height          =   1.99e+2
    ImplicitInstance=   True
    LiveResize      =   False
    MacProcID       =   0
@@ -550,9 +550,9 @@ Begin Window frmAdv
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   175
+      Top             =   306
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   106
    End
    Begin Label StaticText9
@@ -665,6 +665,36 @@ Begin Window frmAdv
       Underline       =   ""
       Visible         =   True
       Width           =   117
+   End
+   Begin PSButton btnOK
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "OK"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   8511487
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   316
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   22
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   170
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   130
    End
 End
 #tag EndWindow
@@ -903,6 +933,18 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events PushButton1
+	#tag Event
+		Sub Action()
+		  frmadv.Visible = False
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnOK
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
 	#tag Event
 		Sub Action()
 		  frmadv.Visible = False

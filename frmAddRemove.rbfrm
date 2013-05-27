@@ -1,6 +1,6 @@
 #tag Window
 Begin Window frmAddRemove
-   BackColor       =   16777215
+   BackColor       =   &hFFFFFF
    Backdrop        =   ""
    CloseButton     =   True
    Composite       =   True
@@ -266,7 +266,7 @@ Begin Window frmAddRemove
       Visible         =   True
       Width           =   85
    End
-   Begin PushButton btnDel
+   Begin PushButton btnDelOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -279,7 +279,7 @@ Begin Window frmAddRemove
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   489
+      Left            =   662
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -292,12 +292,12 @@ Begin Window frmAddRemove
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   424
+      Top             =   423
       Underline       =   ""
       Visible         =   True
       Width           =   130
    End
-   Begin PushButton btnEdit
+   Begin PushButton btnEditOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -310,7 +310,7 @@ Begin Window frmAddRemove
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   489
+      Left            =   662
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -328,7 +328,7 @@ Begin Window frmAddRemove
       Visible         =   True
       Width           =   130
    End
-   Begin PushButton btnUp
+   Begin PushButton btnUpOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -341,7 +341,7 @@ Begin Window frmAddRemove
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   489
+      Left            =   662
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -356,10 +356,10 @@ Begin Window frmAddRemove
       TextUnit        =   0
       Top             =   295
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   58
    End
-   Begin PushButton btnDown
+   Begin PushButton btnDownOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -372,7 +372,7 @@ Begin Window frmAddRemove
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   553
+      Left            =   724
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -387,10 +387,10 @@ Begin Window frmAddRemove
       TextUnit        =   0
       Top             =   295
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   66
    End
-   Begin PushButton btnOK
+   Begin PushButton btnOKold
       AutoDeactivate  =   True
       Bold            =   True
       ButtonStyle     =   0
@@ -403,7 +403,7 @@ Begin Window frmAddRemove
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   20
+      Left            =   536
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -416,12 +416,12 @@ Begin Window frmAddRemove
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   492
+      Top             =   558
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   80
    End
-   Begin PushButton btnDoNot
+   Begin PushButton btnDoNotOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -434,7 +434,7 @@ Begin Window frmAddRemove
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   105
+      Left            =   310
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -447,9 +447,9 @@ Begin Window frmAddRemove
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   492
+      Top             =   558
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   199
    End
    Begin ProgressWheel wheel
@@ -504,7 +504,7 @@ Begin Window frmAddRemove
       Visible         =   True
       Width           =   85
    End
-   Begin PushButton btnDup
+   Begin PushButton btnDupOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -517,7 +517,7 @@ Begin Window frmAddRemove
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   489
+      Left            =   662
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -530,7 +530,7 @@ Begin Window frmAddRemove
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   360
+      Top             =   359
       Underline       =   ""
       Visible         =   True
       Width           =   130
@@ -771,7 +771,7 @@ Begin Window frmAddRemove
       Visible         =   False
       Width           =   168
    End
-   Begin PushButton btnSubmit
+   Begin PushButton btnSubmitOld
       AutoDeactivate  =   True
       Bold            =   True
       ButtonStyle     =   0
@@ -784,7 +784,7 @@ Begin Window frmAddRemove
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   489
+      Left            =   662
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -797,8 +797,248 @@ Begin Window frmAddRemove
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   392
+      Top             =   391
       Underline       =   ""
+      Visible         =   True
+      Width           =   130
+   End
+   Begin PSButton btnOK
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "OK"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   28
+      HelpTag         =   ""
+      Icon            =   8511487
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   489
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   24
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   491
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   130
+   End
+   Begin PSButton btnDoNot
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Do not make any change"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   28
+      HelpTag         =   ""
+      Icon            =   1793927167
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   240
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   25
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   491
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   237
+   End
+   Begin PSButton btnDown
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Down"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   20
+      HelpTag         =   ""
+      Icon            =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   556
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   26
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   295
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   63
+   End
+   Begin PSButton btnUp
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Up"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   20
+      HelpTag         =   ""
+      Icon            =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   489
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   27
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   295
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   63
+   End
+   Begin PSButton btnEdit
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Edit"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   20
+      HelpTag         =   ""
+      Icon            =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   489
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   28
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   327
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   130
+   End
+   Begin PSButton btnDup
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Duplicate"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   20
+      HelpTag         =   ""
+      Icon            =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   489
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   29
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   359
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   130
+   End
+   Begin PSButton btnSubmit
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Submit"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   20
+      HelpTag         =   ""
+      Icon            =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   489
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   30
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   391
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   130
+   End
+   Begin PSButton btnDel
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Remove"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   20
+      HelpTag         =   ""
+      Icon            =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   489
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   31
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   423
+      UseFocusRing    =   True
       Visible         =   True
       Width           =   130
    End
@@ -1169,7 +1409,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnDel
+#tag Events btnDelOld
 	#tag Event
 		Sub Action()
 		  if (lstInstalled.ListIndex <> -1) then
@@ -1179,7 +1419,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnEdit
+#tag Events btnEditOld
 	#tag Event
 		Sub Action()
 		  if (lstInstalled.ListIndex <> -1) then
@@ -1188,7 +1428,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnUp
+#tag Events btnUpOld
 	#tag Event
 		Sub Action()
 		  if (lstInstalled.ListIndex > 0) then
@@ -1212,7 +1452,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnDown
+#tag Events btnDownOld
 	#tag Event
 		Sub Action()
 		  if (lstInstalled.ListIndex <> lstInstalled.ListCount-1) and (lstInstalled.ListIndex <> -1) then
@@ -1236,7 +1476,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnOK
+#tag Events btnOKold
 	#tag Event
 		Sub Action()
 		  // write the updated profiles list and save settings
@@ -1299,7 +1539,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnDoNot
+#tag Events btnDoNotOld
 	#tag Event
 		Sub Action()
 		  http.Close
@@ -1341,7 +1581,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnDup
+#tag Events btnDupOld
 	#tag Event
 		Sub Action()
 		  if (lstInstalled.ListIndex <> -1) then
@@ -1607,7 +1847,7 @@ End
 		End Function
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnSubmit
+#tag Events btnSubmitOld
 	#tag Event
 		Sub Action()
 		  dim index as integer
@@ -1615,6 +1855,231 @@ End
 		  
 		  if (index <> -1) then
 		    frmUpload.initDialog( lstInstalled.list(index), lstInstalled.Cell( index,1 ) )
+		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnOK
+	#tag Event
+		Sub Action()
+		  // write the updated profiles list and save settings
+		  
+		  try
+		    
+		    Dim outT as TextOutputStream
+		    Dim outF as FolderItem
+		    dim i as Integer
+		    
+		    outF=GetFolderItem ( Window1.profilesDir + "profiles.txt" )
+		    outT=TextOutputStream.Create(outF)
+		    
+		    for i = 0 to lstInstalled.ListCount-1
+		      outT.WriteLine ( lstInstalled.Cell (i, 1) )
+		    next i
+		    
+		    outT.Close
+		    
+		    
+		    dim q as String
+		    q = Window1.quote.Text
+		    
+		    // save if it will using system's ffmpeg
+		    if (chkFfmpeg.Visible = True) then
+		      Window1.saveConfig ( Window1.configFile, "sysFFMPEG", cstr( chkFfmpeg.Value ) )
+		      window1.sysFFMPEG = chkFfmpeg.Value
+		      
+		      if ( chkFfmpeg.Value = True ) then
+		        Window1.ffmpegBin = "ffmpeg"
+		      else
+		        Window1.ffmpegBin = q + window1.appdir + "ffmpeg" + q
+		      end if
+		      
+		    end if
+		    
+		    // save if it will using system's and mencoder
+		    if (chkMencoder.Visible = True) then
+		      Window1.saveConfig ( Window1.configFile, "sysMENCODER", cstr( chkMencoder.Value ) )
+		      window1.sysMENCODER = chkMencoder.Value
+		      
+		      if ( chkMencoder.Value = true ) then
+		        Window1.mencoderBin = "mencoder"
+		      else
+		        Window1.mencoderBin = q + window1.appdir + "mencoder" + q
+		      end if
+		      
+		    end if
+		    
+		    // save if it will open the folder with converted files
+		    Window1.saveConfig ( Window1.configFile, "openFolder", cstr( chkOpenFolder.Value ) )
+		    Window1.openFolder = chkOpenFolder.Value
+		    
+		  catch
+		  end try
+		  
+		  Window1.makeProfilesList (Window1.profilesDir + "profiles.txt")
+		  Window1.popMode1.ListIndex = 0
+		  frmAddRemove.Close
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnDoNot
+	#tag Event
+		Sub Action()
+		  http.Close
+		  thrGetList.Kill
+		  frmAddRemove.Close
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnDown
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  if (lstInstalled.ListIndex <> lstInstalled.ListCount-1) and (lstInstalled.ListIndex <> -1) then
+		    
+		    // get the details of the current selected
+		    dim fileName, Name, Version as String
+		    fileName = lstInstalled.Cell( lstInstalled.ListIndex, 1)
+		    Name = lstInstalled.Cell( lstInstalled.ListIndex, 0)
+		    Version = lstInstalled.Cell( lstInstalled.ListIndex, 2)
+		    
+		    // insert at the right place
+		    lstInstalled.InsertRow lstInstalled.ListIndex+2, Name
+		    lstInstalled.Cell (lstInstalled.LastIndex,1) = fileName
+		    lstInstalled.Cell (lstInstalled.LastIndex,2) = Version
+		    
+		    //delete preview entry and set focus on the new entry
+		    lstInstalled.ListIndex = lstInstalled.LastIndex
+		    lstInstalled.RemoveRow lstInstalled.ListIndex-2
+		    
+		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnUp
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  if (lstInstalled.ListIndex > 0) then
+		    
+		    // get the details of the current selected
+		    dim fileName, Name,Version as String
+		    fileName = lstInstalled.Cell( lstInstalled.ListIndex, 1)
+		    Name = lstInstalled.Cell( lstInstalled.ListIndex, 0)
+		    Version = lstInstalled.Cell( lstInstalled.ListIndex, 2)
+		    
+		    // insert at the right place
+		    lstInstalled.InsertRow lstInstalled.ListIndex-1, Name
+		    lstInstalled.Cell (lstInstalled.LastIndex,1) = fileName
+		    lstInstalled.Cell (lstInstalled.LastIndex,2) = Version
+		    
+		    //delete preview entry and set focus on the new entry
+		    lstInstalled.ListIndex = lstInstalled.LastIndex
+		    lstInstalled.RemoveRow lstInstalled.ListIndex+2
+		    
+		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnEdit
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  if (lstInstalled.ListIndex <> -1) then
+		    frmEdit.setEnv ( Window1.profilesDir + lstInstalled.Cell (lstInstalled.ListIndex, 1), lstInstalled.ListIndex )
+		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnDup
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  if (lstInstalled.ListIndex <> -1) then
+		    
+		    // generate time based filename
+		    dim curDate as new date
+		    dim sCurDate,sNewFileName,sFileName as String
+		    sCurDate = CStr(curDate.Day)+"-"+cstr(curDate.Month)+"--"+cstr(curDate.Hour)+"-"+cstr(curDate.Minute)+"-"+cstr(curDate.Second)+"-"
+		    sFileName =  lstInstalled.Cell( lstInstalled.ListIndex, 1)
+		    sNewFileName = sCurDate + sFileName
+		    
+		    // copy the file
+		    dim fToCopyTo, fToCopy as FolderItem
+		    fToCopy = GetFolderItem ( Window1.profilesDir + sFileName )
+		    fToCopyTo = GetFolderItem ( Window1.profilesDir + sNewFileName )
+		    fToCopy.CopyFileTo fToCopyTo
+		    
+		    // add to the installed list if successfully copied
+		    if (fToCopy.LastErrorCode = 0) then // no error
+		      lstInstalled.AddRow ( lstInstalled.Cell( lstInstalled.ListIndex, 0) )
+		      lstInstalled.Cell( lstInstalled.LastIndex, 1) = sNewFileName
+		      lstInstalled.Cell( lstInstalled.LastIndex, 2) =  lstInstalled.Cell( lstInstalled.ListIndex, 2)
+		    else
+		      MsgBox "Error " + cstr(fToCopy.LastErrorCode) + " occured while trying to copy the profile."
+		    end if
+		    
+		    //refresh count
+		    countProfiles()
+		    
+		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnSubmit
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  dim index as integer
+		  index = lstInstalled.ListIndex
+		  
+		  if (index <> -1) then
+		    frmUpload.initDialog( lstInstalled.list(index), lstInstalled.Cell( index,1 ) )
+		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnDel
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Action()
+		  if (lstInstalled.ListIndex <> -1) then
+		    lstInstalled.RemoveRow lstInstalled.ListIndex
+		    thrGetList.Run
 		  end if
 		End Sub
 	#tag EndEvent

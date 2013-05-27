@@ -1178,7 +1178,7 @@ Begin Window frmEdit
       Visible         =   True
       Width           =   438
    End
-   Begin PushButton btnOK
+   Begin PushButton btnOKold
       AutoDeactivate  =   True
       Bold            =   True
       ButtonStyle     =   0
@@ -1204,12 +1204,12 @@ Begin Window frmEdit
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   463
+      Top             =   529
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   80
    End
-   Begin PushButton btnDoNot
+   Begin PushButton btnDoNotOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -1222,7 +1222,7 @@ Begin Window frmEdit
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   278
+      Left            =   276
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   ""
@@ -1235,9 +1235,9 @@ Begin Window frmEdit
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   463
+      Top             =   529
       Underline       =   ""
-      Visible         =   True
+      Visible         =   False
       Width           =   201
    End
    Begin CheckBox chkiTunes
@@ -1272,7 +1272,7 @@ Begin Window frmEdit
       Visible         =   True
       Width           =   142
    End
-   Begin PushButton btnExport
+   Begin PushButton btnExportOld
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
@@ -1285,7 +1285,7 @@ Begin Window frmEdit
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   20
+      Left            =   65
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -1298,7 +1298,7 @@ Begin Window frmEdit
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   463
+      Top             =   540
       Underline       =   ""
       Visible         =   False
       Width           =   131
@@ -1336,6 +1336,96 @@ Begin Window frmEdit
       Underline       =   ""
       Visible         =   True
       Width           =   543
+   End
+   Begin PSButton btnOK
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "OK"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   8511487
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   446
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   48
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   466
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   130
+   End
+   Begin PSButton btnDoNot
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Do not make any change"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   1793927167
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   197
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   49
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   466
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   237
+   End
+   Begin PSButton btnExport
+      AcceptFocus     =   ""
+      AcceptTabs      =   ""
+      AutoDeactivate  =   True
+      Backdrop        =   ""
+      ButtonStyle     =   0
+      Caption         =   "Export"
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   19
+      HelpTag         =   ""
+      Icon            =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   50
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   466
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   130
    End
 End
 #tag EndWindow
@@ -1576,7 +1666,136 @@ End
 		End Function
 	#tag EndEvent
 #tag EndEvents
+#tag Events btnOKold
+	#tag Event
+		Sub Action()
+		  // write seperately the profiles name
+		  try
+		    Dim outT as TextOutputStream
+		    Dim outF as FolderItem
+		    dim i as Integer
+		    
+		    outF=GetFolderItem ( profFileName )
+		    outT=TextOutputStream.Create(outF)
+		    
+		    outT.WriteLine ( txtName.Text )
+		    outT.Close
+		  catch
+		  end try
+		  
+		  dim splited() as string
+		  dim joined as String
+		  
+		  Window1.saveConfig (profFileName, "cmd", txtExtra.Text)
+		  
+		  splited = Split(txtAB.Text,EndOfLine)
+		  joined = Join(splited,"||")
+		  Window1.saveConfig (profFileName, "AB", joined)
+		  
+		  splited = Split(txtAF.Text,EndOfLine)
+		  joined = Join(splited,"||")
+		  Window1.saveConfig (profFileName, "AF", joined)
+		  
+		  splited = Split(txtAC.Text,EndOfLine)
+		  joined = Join(splited,"||")
+		  Window1.saveConfig (profFileName, "AC", joined)
+		  
+		  splited = Split(txtACodec.Text,EndOfLine)
+		  joined = Join(splited,"||")
+		  Window1.saveConfig (profFileName, "Acodec", joined)
+		  
+		  splited = Split(txtVB.Text,EndOfLine)
+		  joined = Join(splited,"||")
+		  Window1.saveConfig (profFileName, "VB", joined)
+		  
+		  splited = Split(txtVFPS.Text,EndOfLine)
+		  joined = Join(splited,"||")
+		  Window1.saveConfig (profFileName, "VFPS", joined)
+		  
+		  splited = Split(txtVS.Text,EndOfLine)
+		  joined = Join(splited,"||")
+		  Window1.saveConfig (profFileName, "VS", joined)
+		  
+		  splited = Split(txtVCodec.Text,EndOfLine)
+		  joined = Join(splited,"||")
+		  Window1.saveConfig (profFileName, "VCodec", joined)
+		  
+		  Window1.saveConfig (profFileName, "ext", txtExt.Text)
+		  Window1.saveConfig (profFileName, "defAB", txtDAB.Text)
+		  Window1.saveConfig (profFileName, "defVB", txtDVB.Text)
+		  Window1.saveConfig (profFileName, "icon", cmbIcon.Text)
+		  Window1.saveConfig (profFileName, "version", txtVersion.Text)
+		  if (chkiTunes.Value = True) then
+		    Window1.saveConfig (profFileName, "itunes", "yes")
+		  else
+		    Window1.saveConfig (profFileName, "itunes", "no")
+		  end if
+		  
+		  
+		  // change the columns of lstInstalled
+		  frmAddRemove.lstInstalled.Cell(profPos, 0) = txtName.Text
+		  frmAddRemove.lstInstalled.Cell(profPos, 2) = txtVersion.Text
+		  
+		  frmEdit.Close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnDoNotOld
+	#tag Event
+		Sub Action()
+		  frmEdit.Close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnExportOld
+	#tag Event
+		Sub Action()
+		  dim dlg as saveAsDialog
+		  dim folDlg as selectFolderDialog
+		  dim f as folderitem
+		  
+		  //create the dialog (does not actually show it)
+		  folDlg = new selectFolderDialog
+		  folDlg.InitialDirectory = SpecialFolder.UserHome
+		  
+		  f = folDlg.ShowModal
+		  
+		  //then test for nil to see if the user clicked cancel
+		  if f <> nil then //its a folder!
+		    
+		    if (TargetWin32 = True) then
+		      profFileName = ReplaceAll(profFileName, "/", "\")
+		    end if
+		    
+		    dim fExist as FolderItem
+		    fExist = GetFolderItem(profFileName)
+		    fExist.CopyFileTo (f)
+		    
+		  end if
+		  
+		  
+		  
+		  
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub MouseEnter()
+		  lblSend.Visible = True
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub MouseExit()
+		  lblSend.Visible = False
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events btnOK
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
 	#tag Event
 		Sub Action()
 		  // write seperately the profiles name
@@ -1652,12 +1871,22 @@ End
 #tag EndEvents
 #tag Events btnDoNot
 	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
+	#tag Event
 		Sub Action()
 		  frmEdit.Close
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events btnExport
+	#tag Event
+		Sub Open()
+		  me.Initialize
+		End Sub
+	#tag EndEvent
 	#tag Event
 		Sub Action()
 		  dim dlg as saveAsDialog

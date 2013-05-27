@@ -1,7 +1,7 @@
 #tag FileTypeSet
 	#tag FileType
 		CodeName=SupportedTypes
-		Extension=amr;awb;mp3;wav;wma;3gp;mpeg;mpg;wmv;avi;ogg;flv;mp4;aac;m4v;m4a;mp4;mov;3gp;3GP;3g2;m2v;rm;ra;ram;rv;rmvb;mkv;aiff;ape;flac;webm
+		Extension=amr;awb;mp3;wav;wma;3gp;mpeg;mpg;wmv;avi;ogg;flv;mp4;aac;m4v;m4a;mp4;mov;3gp;3GP;3g2;m2v;rm;ra;ram;rv;rmvb;mkv;aiff;ape;flac;webm;3ga
 		Flags=&h0
 		MacCreator=
 		MacType=
@@ -10,11 +10,11 @@
 
 	#tag FileType
 		CodeName=MP3WMAWAVEAudio
-		Extension=mp3;wav;wma;ogg;aac;aiff;ape;flac
+		Extension=mp3;wav;wma;ogg;aac;aiff;ape;flac;3ga
 		Flags=&h0
 		MacCreator=
 		MacType=
-		Name=MP3 / WMA / OGG / WAVE / AAC /AIFF / APE / FLAC Audio
+		Name=MP3 / WMA / OGG / WAVE / AAC /AIFF / APE / FLAC / 3GA Audio
 	#tag EndFileType
 
 	#tag FileType
