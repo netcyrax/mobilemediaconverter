@@ -1817,35 +1817,42 @@ End
 		  
 		  Window1.saveConfig (profFileName, "cmd", txtExtra.Text)
 		  
-		  splited = Split(txtAB.Text,EndOfLine)
+		  dim eof as String
+		  if (TargetWin32) then
+		    eof = EndOfLine.Macintosh
+		  else
+		    eof = EndOfLine
+		  end if
+		  
+		  splited = Split(txtAB.Text,eof)
 		  joined = Join(splited,"||")
 		  Window1.saveConfig (profFileName, "AB", joined)
 		  
-		  splited = Split(txtAF.Text,EndOfLine)
+		  splited = Split(txtAF.Text,eof)
 		  joined = Join(splited,"||")
 		  Window1.saveConfig (profFileName, "AF", joined)
 		  
-		  splited = Split(txtAC.Text,EndOfLine)
+		  splited = Split(txtAC.Text,eof)
 		  joined = Join(splited,"||")
 		  Window1.saveConfig (profFileName, "AC", joined)
 		  
-		  splited = Split(txtACodec.Text,EndOfLine)
+		  splited = Split(txtACodec.Text,eof)
 		  joined = Join(splited,"||")
 		  Window1.saveConfig (profFileName, "Acodec", joined)
 		  
-		  splited = Split(txtVB.Text,EndOfLine)
+		  splited = Split(txtVB.Text,eof)
 		  joined = Join(splited,"||")
 		  Window1.saveConfig (profFileName, "VB", joined)
 		  
-		  splited = Split(txtVFPS.Text,EndOfLine)
+		  splited = Split(txtVFPS.Text,eof)
 		  joined = Join(splited,"||")
 		  Window1.saveConfig (profFileName, "VFPS", joined)
 		  
-		  splited = Split(txtVS.Text,EndOfLine)
+		  splited = Split(txtVS.Text,eof)
 		  joined = Join(splited,"||")
 		  Window1.saveConfig (profFileName, "VS", joined)
 		  
-		  splited = Split(txtVCodec.Text,EndOfLine)
+		  splited = Split(txtVCodec.Text,eof)
 		  joined = Join(splited,"||")
 		  Window1.saveConfig (profFileName, "VCodec", joined)
 		  

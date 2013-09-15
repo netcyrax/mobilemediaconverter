@@ -4,6 +4,7 @@
 |||Wave Audio (.wav)||Uncompressed Wave audio (WAV).||MMC team||1||wav.txt|||
 |||Windows Media Audio (.wma)||Windows Media Audio (WMA) version 8.||MMC team||1||wma.txt|||
 |||iPhone Ringtone (.m4r)||Create iPhone compatible ringtones. Maximum duration of a ringtone is 40 seconds.||MMC team||1||iphone-ringtone.txt|||
+|||iPhone Audio (.m4a)||Create iPhone compatible audio.||Alex||1||iphone-audio.txt|||
 
 
 |||Mobile Video - 3GP Video (.3gp)||3GP Video. Used in mobile phones. This profile does not support subtitles.||MMC team||1||f-3gp.txt|||
@@ -21,6 +22,7 @@
 |||Samsung Genoa Video (.3gp)||Video for your Samsung Genoa GT-C3510 which allows full screen playback. This profile does not support subtitles.||pelucas95||1||f-genoa.txt|||
 |||Nokia 5800 XpressMusic Video (.mp4)||High-quality video for your Nokia 5800 XpressMusic. This profile does not support subtitles.||Extero||1||f-nokia5800.txt|||
 |||Jaga Video (.mp4)||Video for your Jaga chinese mobile phones. This profile does not support subtitles.||Georgios Efstathiou||1||f-jaga.txt|||
+|||LG XPression C395 Video (.3gp)||Video for your LG XPression C395. This profile does not support subtitles.||Patrick Blake Mason||1||f-xpression.txt|||
 
 |||MP4 video with subs (.mp4)||MP4 video that supports subtitles embending.||MMC team||1||m-mp4.txt|||
 |||Generic TV-USB Video with subs (.mp4)||Video suitable for playback on TV sets using USB sticks. Supports embended subtitles.||MMC team||2||m-tv.txt|||

@@ -87,7 +87,7 @@ Begin Window frmYouTube
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   354
+      Left            =   163
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   ""
@@ -99,7 +99,7 @@ Begin Window frmYouTube
       Top             =   89
       Value           =   0
       Visible         =   True
-      Width           =   229
+      Width           =   420
    End
    Begin PushButton btnDownOld
       AutoDeactivate  =   True
@@ -291,7 +291,7 @@ Begin Window frmYouTube
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   85
+      Top             =   231
       Underline       =   ""
       Visible         =   True
       Width           =   109
@@ -425,7 +425,7 @@ Begin Window frmYouTube
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   92
+      Top             =   238
       Transparent     =   False
       Underline       =   ""
       Visible         =   True
@@ -1117,7 +1117,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		youtube_dl_update As Boolean = false
+		youtube_dl_update As Integer = 0
 	#tag EndProperty
 
 
@@ -1293,6 +1293,7 @@ End
 		    cnvProgress.Visible = True
 		    lblProgress.Visible = True
 		    
+		    
 		    // get the acual video file!
 		    http.get (urlToDownload, fOut)
 		    
@@ -1416,9 +1417,9 @@ End
 		    me.HelpTag = sTitle
 		  else
 		    dim x, y as Integer
-		    x = (me.Width - picYouTube.Width)/2
-		    y = (me.Height - picYouTube.Height)/2
-		    g.DrawPicture (picYouTube, x, y)
+		    x = (me.Width - picDownloader.Width)/2
+		    y = (me.Height - picDownloader.Height)/2
+		    g.DrawPicture (picDownloader, x, y)
 		    'g.DrawRect (0,0, me.Width, me.Height)
 		    me.HelpTag = ""
 		  End If
@@ -1664,14 +1665,14 @@ End
 		  
 		  if (sTemp.Ubound = 0) then // error has occured
 		    
-		    if (youtube_dl_update = false) then // first time that the youtube-dl has failes
+		    if (youtube_dl_update = 0) then // first time that the youtube-dl has failed
 		      
-		      youtube_dl_update = true
+		      youtube_dl_update = youtube_dl_update + 1
 		      shell_youtube_dl.Execute youtube_dl_path + " -U"
 		      
 		    else  // second time that the youtube-dl has failed
 		      
-		      MsgBox "Cannot download selected video."
+		      MsgBox "Cannot download selected video. Please try again."
 		      frmYouTube.Close
 		      
 		    end if
@@ -1691,10 +1692,15 @@ End
 		    sFolder = specialFolder(sTxtOut) // get the actual path from the text like "Desktop"
 		    if (sFolder <> "") then  txtOut.Text = sFolder+sTitle+findExtByUrl(sRealUrl)
 		    
+		    // display the progress text
+		    cnvProgress.Visible = True
+		    lblProgress.Visible = True
+		    
 		    // download the file
 		    dim fOut as FolderItem
 		    fOut = new FolderItem(txtOut.Text)
 		    disableAll() // disable all controls in the window
+		    
 		    http.get(sRealUrl, fOut)
 		    
 		  end if
@@ -1774,30 +1780,34 @@ End
 		  
 		  // -------------------------------        local file validation        ------------------------------
 		  if (txtOut.Text = "") then
-		    msgbox "Please select a location to save the YouTube video."
+		    msgbox "Please select a location to save the downloaded video / audio."
 		    Return
 		  end if
 		  
 		  if (txtIn.Text = "") then
-		    MsgBox "Please enter a video URL."
+		    MsgBox "Please enter a video / audio URL."
 		    Return
 		  end if
 		  
 		  
 		  // -------------------------     download process  -----------------------------------
-		  // URL.ex.  http://www.youtube.com/watch?v=nw0fYdy7kBk
 		  
-		  vVar = getVvar ( txtin.Text)
+		  ' ----------------------------- Depreciated code -----------------------------------
+		  '//URL.ex.  http://www.youtube.com/watch?v=nw0fYdy7kBk
+		  '
+		  'vVar = getVvar ( txtin.Text)
+		  '
+		  'if (vVar = "-1") then
+		  '
+		  'youtube_dl()
+		  '
+		  'else
+		  'HTTP.Get "http://www.youtube.com/get_video_info?&video_id=" + vVar + "&el=embedded&ps=default&eurl=&gl=US&hl=en"
+		  '
+		  'bar.Maximum = 0
+		  'end if
 		  
-		  if (vVar = "-1") then
-		    
-		    youtube_dl()
-		    
-		  else
-		    HTTP.Get "http://www.youtube.com/get_video_info?&video_id=" + vVar + "&el=embedded&ps=default&eurl=&gl=US&hl=en"
-		    
-		    bar.Maximum = 0
-		  end if
+		  youtube_dl()
 		  
 		  // start the Ubuntu Unity integration with 200ms latency
 		  UnityProgress.Mode = 2
